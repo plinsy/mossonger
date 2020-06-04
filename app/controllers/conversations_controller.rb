@@ -11,7 +11,7 @@ class ConversationsController < ApplicationController
   # GET /conversations/1
   # GET /conversations/1.json
   def show
-    @messages = @conversation.messages.availables
+    @messages = @conversation.messages.availables.sort { |a, b| a.created_at }
     @react_messages = @conversation.react_messages_for(current_user)
     @message = @conversation.messages.new
   end
@@ -69,7 +69,8 @@ class ConversationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conversation
-      @conversation = current_user.conversations.find(params[:id])
+      conversation = Conversation.find(params[:id])
+      @conversation = current_user.all_conversations.include?(conversation) ? conversation : nil
       @users = @conversation.users
     end
 
@@ -80,7 +81,7 @@ class ConversationsController < ApplicationController
 
     def set_conversations
       @conversations = []
-      @availables_conversations = current_user.conversations.availables
+      @availables_conversations = current_user.all_availables_conversations
       @pending_conversations = current_user.pending_conversations
     end
 

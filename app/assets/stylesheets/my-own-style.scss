@@ -1,3 +1,17 @@
+.tooltip {
+    .arrow {
+        background-color: red;
+    }
+
+    .tooltip-inner {
+        background-color: black;
+        * {
+            font-size: 0.7rem;
+        }
+    }
+
+}
+
 .btn-float.btn-sm {
     min-width: 2.5rem;
 }

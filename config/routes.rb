@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   resources :secrets
   resources :hiding_places
   resources :trashes
-  resources :dropboxes
+  get '/drop/:dropable_type/:dropable_id', to: "dropboxes#drop", as: "drop"
+  resources :dropboxes do
+  end
   get '/settings', to: 'chat_settings#edit', as: 'settings'
   resources :chat_settings
   resources :chats, only: %[index]

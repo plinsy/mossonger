@@ -60,10 +60,12 @@ class MessagesController < ApplicationController
   # DELETE /messages/1
   # DELETE /messages/1.json
   def destroy
+    @id = @message.id
     @message.destroy
     respond_to do |format|
       format.html { redirect_to @conversation, notice: 'Message was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -79,6 +81,7 @@ class MessagesController < ApplicationController
   end
 
   def set_conversation
-    @conversation = current_user.conversations.find(params[:conversation_id])
+    conversation = Conversation.find(params[:conversation_id])
+    @conversation = current_user.all_conversations.include?(conversation) ? conversation : nil
   end
 end

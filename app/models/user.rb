@@ -33,7 +33,7 @@ class User < ApplicationRecord
     has_many :guests, through: :conversations
 
   has_many :received_invitations, class_name: "Invitation", foreign_key: :guest_id, dependent: :destroy
-
+    has_many :host_conversations, class_name: "Conversation", through: :received_invitations, source: :conversation
   def pending_conversations
     self.received_invitations.map { |i| i.conversation }.select { |c| c.not_available }
   end
@@ -115,5 +115,15 @@ class User < ApplicationRecord
 
   def nickname_at(conversation)
     conversation.nicknames.where(user: self).first
+  end
+
+  def all_availables_conversations
+    return (self.conversations.availables + self.host_conversations.availables).uniq
+  end
+
+  def all_conversations
+    c = self.conversations
+    c += self.host_conversations
+    return c
   end
 end

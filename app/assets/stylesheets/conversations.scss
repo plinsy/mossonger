@@ -14,3 +14,9 @@
 #messages aside:hover .icons {
     opacity: 1;
 }
+
+@media (max-width: 767px) {
+	#messages {
+		height: calc(100vh - 104.86px);
+	}
+}

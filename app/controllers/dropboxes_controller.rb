@@ -1,5 +1,6 @@
 class DropboxesController < ApplicationController
-  before_action :set_dropbox, only: [:show, :edit, :update, :destroy]
+  before_action :set_dropbox, only: [:show, :edit, :update, :destroy, :drop]
+  before_action :set_dropable, only: [:drop]
 
   # GET /dropboxes
   # GET /dropboxes.json
@@ -61,14 +62,38 @@ class DropboxesController < ApplicationController
     end
   end
 
+  def drop
+    respond_to do |format|
+      if @dropbox.drop(@dropable)
+        format.js {
+          render :dropped
+        }
+      else
+        format.js {
+          flash[:error] = "Not archived"
+          not_created
+        }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_dropbox
-      @dropbox = Dropbox.find(params[:id])
+      @dropbox = current_user.dropbox
     end
 
     # Only allow a list of trusted parameters through.
     def dropbox_params
       params.require(:dropbox).permit(:admin_id)
+    end
+
+    def set_dropable
+      @dropable_type = params[:dropable_type]
+      @dropable_id = params[:dropable_id]
+      case @dropable_type
+      when 'message'
+        @dropable = Message.find(@dropable_id)
+      end
     end
 end

@@ -1,0 +1,4 @@
+toastr['success']('<%= @dropable_type.capitalize %> #<%= @dropable_id %> archived');
+$("#<%= @dropable_type %>-<%= @dropable_id %>").fadeOut('slow', function() {
+	$(this).remove();
+});

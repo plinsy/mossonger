@@ -30,7 +30,7 @@ var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
 
 $(document).on('ready turbolinks:load', function() {
-    $('[data-toggle="tooltip"]').tooltip({
-        container: "body"
-    });
+    // $('[data-toggle="tooltip"]').tooltip({
+    //     container: "body"
+    // });
 });
