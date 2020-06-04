@@ -1,0 +1,45 @@
+<nav class="nav-left navbar navbar-expand-lg navbar-light py-sm-0 px-sm-4 py-md-0 pl-md-1 py-lg-3 px-lg-2 border-right border-light h-8-vh align-items-sm-center justify-content-md-between justify-content-around p-0">
+    <div data-toggle="tooltip" data-trigger="hover" data-placement="right" title="Profile menu" class="dropdown d-none d-lg-block">
+        <a data-toggle="dropdown" class="navbar-brand" href="<%= root_path %>">
+            <div class="media h-100 align-items-center">
+                <%= image_tag current_user.avatar, alt: "avatar", size: 40, class: "avatar rounded-circle border border-info" %>
+                <div class="media-body">
+                    <h3 class="m-0 font-weight-bold">Chats</h3>
+                </div>
+            </div>
+        </a>
+        <%= render 'chats/templates/2/dropdown-menu' %>
+    </div>
+    <div class="">
+        <ul class="navbar-nav ml-auto justify-content-around">
+            <li class="nav-item d-none d-lg-block mx-1">
+                <div data-toggle="tooltip" data-trigger="hover" data-placement="right" title="Settings, help and more" class="dropdown d-none d-lg-block">
+                    <%= link_to material_icon.settings, root_path, data: {toggle: "dropdown"}, class: "btn-sm btn btn-float btn-light shadow-none" %>
+                    <%= render 'chats/templates/2/dropdown-menu' %>
+                </div>
+            </li>
+            <li data-toggle="tooltip" data-trigger="hover" data-placement="right" title="Create new room" class="nav-item d-none d-lg-block mx-1">
+                <%= link_to material_icon.video_call, "#create-room", class: "btn-sm btn btn-float btn-light shadow-none" %>
+            </li>
+            <li data-toggle="tooltip" data-trigger="hover" data-placement="right" title="New Message" class="nav-item mx-1">
+                <%= link_to material_icon.edit, pages_privacy_path, class: "btn-sm btn btn-float btn-light shadow-none" %>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="border-right border-light h-7-vh d-none d-lg-block">
+    <form action="/search-user" method="get" accept-charset="utf-8">
+        <div class="px-2 pt-2 pb-3">
+            <div class="input-group bg-light px-3 br-25">
+                <label for="q" class="input-group-prepend">
+                    <span class="material-icons">search</span>
+                </label>
+                <input type="text" id="q" name="q" placeholder="Search" class="form-input border-0 bg-transparent">
+            </div>
+            </span>
+        </div>
+    </form>
+</div>
+<ul class="h-85-vh-lg h-92-vh-md h-92-vh-sm scroll-y hidden-x py-0 pl-1 px-md-2 border-right border-light">
+    <%= render @availables_conversations %>
+</ul>

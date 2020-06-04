@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-md-block">
+    <div class="container">
+        <a class="navbar-brand" href="<%= root_path %>">
+        	<%= image_tag 'logos/nav-logo.png', alt: "nav-logo", class: "h-100" %>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto justify-content-around">
+                <li class="nav-item">
+                    <%= link_to material_icon.phone, root_path, class: "btn btn-float shadow-none" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to material_icon.videocam, pages_features_path, class: "btn btn-float shadow-none" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to material_icon.info, pages_privacy_path, class: "btn btn-float shadow-none" %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<%# render 'layouts/offline/flashes' %>

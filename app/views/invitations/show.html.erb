@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Conversation:</strong>
+  <%= @invitation.conversation_id %>
+</p>
+
+<p>
+  <strong>Guest:</strong>
+  <%= @invitation.guest_id %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @invitation.message %>
+</p>
+
+<p>
+  <strong>Is accepted:</strong>
+  <%= @invitation.is_accepted %>
+</p>
+
+<%= link_to 'Edit', edit_invitation_path(@invitation) %> |
+<%= link_to 'Back', invitations_path %>

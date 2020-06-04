@@ -1,0 +1,16 @@
+// Place all the styles related to the conversations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.chat-body {
+    height: calc(92vh - 47.98px);
+}
+
+#messages aside .icons {
+    opacity: 0;
+    transition-duration: 250ms;
+}
+
+#messages aside:hover .icons {
+    opacity: 1;
+}

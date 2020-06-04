@@ -1,0 +1,60 @@
+input,
+input:not(.form-input):focus {
+    padding: .5rem;
+    border-radius: 7px;
+    outline: none !important;
+}
+
+.input,
+.input:not(.form-input):focus,
+.form-inputs .chip,
+.form-inputs .chip:focus {
+    padding: .5rem;
+    border-radius: 25px;
+    outline: none !important;
+}
+
+.input,
+input.form-input:hover,
+.input.form-input:hover {
+    border: 0 !important;
+}
+
+.input.form-input:focus,
+.form-inputs .chip:focus,
+input.form-input:focus {
+    outline: none !important;
+}
+
+.input[type=submit],
+input[type=submit] {
+    border-radius: 20px;
+}
+
+.input,
+input {
+    border: 1px black solid;
+}
+
+input:not(.form-input):focus {
+    border: 2px #4169e1 solid !important;
+}
+
+.form-inputs .chip:focus,
+.form-inputs .chip:hover {
+    border: 1px #4169e1 solid !important;
+}
+
+@media(max-width: 767px) {
+
+    .input,
+    input {
+        width: 100%;
+    }
+}
+
+@media(min-width: 768px) {}
+
+@media(min-width: 992px) {}
+
+@media(min-width: 1200px) {}

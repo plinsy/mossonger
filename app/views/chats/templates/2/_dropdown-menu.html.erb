@@ -1,0 +1,18 @@
+<div class="dropdown-menu dropdown-menu-left">
+    <%= link_to "Settings", settings_path(@chat_setting), remote: true, class: "dropdown-item" %>
+    <div class="dropdown-divider"></div>
+    <%= link_to "Active Contacts", "#active-contacts", class: "dropdown-item" %>
+    <%= link_to "Message Requests", conversation_invitations_path(@conversation), remote: true, class: "dropdown-item" %>
+    <%= link_to "Hidden Chats", "#hidden-chats", class: "dropdown-item" %>
+    <%= link_to "Unread Chats", "#unread-chats", class: "dropdown-item" %>
+    <div class="dropdown-divider"></div>
+    <%= link_to "About", "#about", class: "dropdown-item" %>
+    <%= link_to "Terms", "#terms", class: "dropdown-item" %>
+    <%= link_to "Privacy Policy", "#privacy-policy", class: "dropdown-item" %>
+    <%= link_to "Cookie Policy", "#cookie-policy", class: "dropdown-item" %>
+    <div class="dropdown-divider"></div>
+    <%= link_to "Help", "#help", class: "dropdown-item" %>
+    <%= link_to "Report a Problem", "#report-a-problem", class: "dropdown-item" %>
+    <div class="dropdown-divider"></div>
+    <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+</div>

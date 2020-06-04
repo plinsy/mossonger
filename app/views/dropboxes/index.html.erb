@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dropboxes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Admin</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dropboxes.each do |dropbox| %>
+      <tr>
+        <td><%= dropbox.admin_id %></td>
+        <td><%= link_to 'Show', dropbox %></td>
+        <td><%= link_to 'Edit', edit_dropbox_path(dropbox) %></td>
+        <td><%= link_to 'Destroy', dropbox, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dropbox', new_dropbox_path %>

@@ -1,0 +1,20 @@
+<%= form_with(scope: :user, url: user_session_path) do |f| %>
+<div class="form-group">
+    <%= f.text_field :login, autofocus: true, placeholder: "Email or phone number", class: "" %>
+</div>
+<div class="form-group">
+    <%= f.password_field :password, placeholder: "Password", class: "" %>
+</div>
+<div class="form-group">
+    <%= f.submit "Log in", class: "btn btn-info" %>
+</div>
+<div class="form-group">
+    <div class="custom-control custom-checkbox">
+        <%= f.check_box :remember_me, class: "custom-control-input" %>
+        <%= f.label :remember_me, "Keep me signed in", class: "custom-control-label" %>
+    </div>
+</div>
+<div class="form-group">
+    <%= link_to "Forgot your password?", new_user_password_path %>
+</div>
+<% end %>

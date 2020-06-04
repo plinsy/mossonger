@@ -1,0 +1,20 @@
+<!--
+<%# if flash.any? %>
+<div class="container-fluid" id="flashes">
+    <%# flash.each do |key, value| %>
+    <p id="<%#= key %>" class="alert alert-<%#= key %> border-<%#= key %> alert-dismissible">
+        <a href="#" class="fa fa-times close" data-dismiss="alert"></a>
+        <%#= value %>
+    </p>
+    <%# end %>
+</div>
+<%# end %> 
+-->
+<% if flash.any? %>
+	<script type="text/javascript">
+		<% flash.each do |f| %>
+			<% type = f[0].to_s.gsub('alert','error').gsub('notice','info') %>
+			toastr['<%= type %>']('<%= f[1] %>')
+		<% end %>
+	</script>
+<% end %>

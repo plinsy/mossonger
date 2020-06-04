@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-light align-items-center border-bottom border-light h-8-vh pt-lg-2">
+    <div class="container">
+        <a class="navbar-brand" href="<%= root_path %>">
+            <% if action_name == "index" %>
+        	<%= image_tag "logos/default-room.png", size: 25, alt: "nav-logo", class: "app-logo btn-sm btn btn-float shadow-none" %>
+            <% else %>
+            <%= image_tag @conversation.logo, size: 25, alt: "nav-logo", class: " conversation-logo btn-sm btn btn-float shadow-none" %>
+            <% end %>
+        </a>
+        <div class="">
+            <ul class="navbar-nav ml-auto justify-content-around">
+                <li class="nav-item">
+                    <%= link_to material_icon.phone, "#start-a-group-call", data: {toggle: "tooltip"}, title: "Start a group call", class: "btn-sm btn btn-float text-info shadow-none" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to material_icon.videocam, "#start-a-group-video-chat", data: {toggle: "tooltip"}, title: "Start a group video chat", class: "btn-sm btn btn-float text-info shadow-none" %>
+                </li>
+                <li class="nav-item">
+                    <button type="button" data-target="#chat-informations" data-toggle="collapse" class="btn-sm btn btn-float text-info shadow-none"><i class="material-icons">info</i></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<%# render 'layouts/offline/flashes' %>

@@ -1,0 +1,46 @@
+<section class="d-flex align-items-center container h-100-vh">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-lg-3"></div>
+            <div class="col-sm-12 col-md-8 col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Sign up</h2>
+                    </div>
+                    <div class="card-body">
+                        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                        <%= f.error_notification %>
+                        <div class="form-inputs">
+                            <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "first_name", class: "form-input" }%>
+                            <%= f.input :last_name,
+                required: true,
+                input_html: { autocomplete: "last_name", class: "form-input" }%>
+                <%= f.input :phone_number,
+                required: true,
+                input_html: { autocomplete: "phone_number", class: "form-input" }%>
+                            <%= f.input :email,
+                required: true,
+                input_html: { autocomplete: "email", class: "form-input" }%>
+                            <%= f.input :password,
+                required: true,
+                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                input_html: { autocomplete: "new-password", class: "form-input" } %>
+                            <%= f.input :password_confirmation,
+                required: true,
+                input_html: { autocomplete: "new-password", class: "form-input" } %>
+                        </div>
+                        <div class="form-actions text-center">
+                            <%= f.button :submit, "Sign up", class: "btn btn-success" %>
+                        </div>
+                        <% end %>
+                        <%= render "users/shared/links" %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-3"></div>
+        </div>
+    </div>
+</section>

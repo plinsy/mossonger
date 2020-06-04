@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hiding Places</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Admin</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hiding_places.each do |hiding_place| %>
+      <tr>
+        <td><%= hiding_place.admin_id %></td>
+        <td><%= link_to 'Show', hiding_place %></td>
+        <td><%= link_to 'Edit', edit_hiding_place_path(hiding_place) %></td>
+        <td><%= link_to 'Destroy', hiding_place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hiding Place', new_hiding_place_path %>

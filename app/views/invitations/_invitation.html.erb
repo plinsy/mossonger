@@ -1,0 +1,37 @@
+<li class="list-group-item py-md-1 pr-md-1 pl-md-1 py-sm-0 pr-sm-1 pl-sm-0 my-2 border-0 shadow-none">
+    <%= link_to invitation.conversation, class: "" do %>
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="media justify-content-between align-items-center">
+            <%= image_tag invitation.sender.avatar, size: 45, class: "h-100 w-3-vw-lg w-5-vw-md w-15-vw-sm rounded-circle" %>
+            <div class="media-body d-none d-lg-block">
+                <p class="m-0 text-dark">
+                    <%= invitation.sender.name %>
+                </p>
+                <p class="message-content text-muted small m-0">
+                    <%= invitation.conversation.messages.last.sender.name %>:
+                    <%= invitation.conversation.messages.last.content %>
+                    <%= invitation.conversation.messages.last.created_at.strftime("%H:%M %P").upcase %>
+                </p>
+            </div>
+        </div>
+        <% if false %>
+        <small class="d-none d-lg-block">
+            <%= "Active #{time_ago_in_words(invitation.sender.last_sign_in_at)} ago" %></small>
+        <% end %>
+        <div class="dropdown d-none d-lg-block">
+            <%= link_to material_icon.more_horiz, '#more', data: {toggle: 'dropdown'}, class: 'more' %>
+            <div class="dropdown-menu dropdown-menu-right">
+                <%= link_to "Mute", "#mute", class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to "Leave Group", "#leave-group", class: "dropdown-item" %>
+                <%= link_to "Hide", "#hide", class: "dropdown-item" %>
+                <%= link_to "Delete", "#delete", class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to "Mark as Unread", "#mark-as-unread", class: "dropdown-item" %>
+                <%= link_to "Something's wrong", "#something-is-wrong", class: "dropdown-item" %>
+                <%= link_to "Ignore Messages", "#ignore-messages", class: "dropdown-item" %>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</li>

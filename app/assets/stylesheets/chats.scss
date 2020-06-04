@@ -1,0 +1,38 @@
+// Place all the styles related to the chats controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.online {
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        opacity: 0;
+        background: transparent;
+        border-radius: 20px;
+        transformation-delay: 250ms;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        opacity: 1;
+        background: #888;
+    }
+
+    li.list-group-item {
+        border-radius: 10px;
+    }
+
+    li.list-group-item:hover,
+    li.list-group-item:active {
+        background: #f5f5f5;
+    }
+}

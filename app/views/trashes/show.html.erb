@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Dropbox:</strong>
+  <%= @trash.dropbox_id %>
+</p>
+
+<p>
+  <strong>Trashable:</strong>
+  <%= @trash.trashable_id %>
+</p>
+
+<p>
+  <strong>Trashable type:</strong>
+  <%= @trash.trashable_type %>
+</p>
+
+<%= link_to 'Edit', edit_trash_path(@trash) %> |
+<%= link_to 'Back', trashes_path %>

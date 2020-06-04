@@ -1,0 +1,40 @@
+<nav class="nav-left navbar navbar-expand-lg navbar-light py-sm-0 px-sm-4 py-md-0 pl-md-1 py-lg-3 px-lg-2 border-right border-light h-8-vh align-items-sm-center justify-content-md-between justify-content-around p-0">
+    <div data-toggle="tooltip" data-trigger="hover" data-placement="right" title="Profile menu" class="d-none d-lg-block">
+        <div class="media h-100 align-items-center">
+            <%= link_to material_icon.arrow_back, @conversation, remote: true, class: "btn btn-float shadow-none" %>
+            <div class="media-body">
+                <h3 class="m-0 font-weight-bold">Requests</h3>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <ul class="navbar-nav ml-auto justify-content-around tab-pane requests">
+            <li class="nav-item d-none d-lg-block mx-1">
+                <div data-toggle="tooltip" data-trigger="hover" data-placement="right" title="Settings, help and more" class="dropdown d-none d-lg-block">
+                    <%= link_to material_icon.settings, root_path, data: {toggle: "dropdown"}, class: "btn-sm btn btn-float btn-light shadow-none" %>
+                    <div class="dropdown-menu dropdown-menu-left">
+                        <%= link_to "Delete All", conversation_destroy_all_invitations_path(@conversation), method: :delete, data: {confirm: "Are you sure ?"}, class: "dropdown-item" %>
+                        <%= link_to "Mark All As Read", "#mark-all-as-read", class: "dropdown-item" %>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="border-right border-light h-7-vh d-none d-lg-block">
+    <div class="card bg-light shadow-none p-2">
+        <p class="card-text m-0 text-muted">
+            Open a request to get info about who's messaeging you.
+            They wnot' know you've seen it until you reply.
+        </p>
+    </div>
+</div>
+<div class="">
+    <ul class="h-85-vh-lg h-92-vh-md h-92-vh-sm scroll-y hidden-x py-0 pl-1 px-md-2 border-right border-light">
+        <%= render @pending_invitations %>
+        <li class="list-group-item my-2 border-0 rounded-0 text-center shadow-none">
+            <%= link_to "See Filtered Messages", conversation_messages_path(@conversation), class: "font-weight-bold" %>
+        </li>
+    </ul>
+</div>
+<%# render 'layouts/offline/flashes' %>

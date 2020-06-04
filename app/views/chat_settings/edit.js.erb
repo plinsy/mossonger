@@ -1,0 +1,6 @@
+if ($('#default-modal').length == 0) {
+	$('body').append(`<%= render 'layouts/modals/default-modal' %>`);
+}
+$('#default-modal').modal({backdrop: 'static'});
+$('#default-modal').find('.modal-title').html(`Settings`);
+$('#default-modal').find('.modal-body').html(`<%= render 'chat_settings/edit' %>`);

@@ -1,0 +1,3 @@
+$('.conversation-logo').attr('src', `<%= url_for(@conversation.logo) %>`);
+$('.conversation-name').attr('src', `<%= @conversation.name %>`);
+toastr['success']('Updated!');

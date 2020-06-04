@@ -1,0 +1,10 @@
+if (<%= flash.any? %>) {
+	toastr['error'](`<%= flash[:danger] %>`);
+} else {
+	if ($('#modal-md').length == 0) {
+		$('body').append(`<%= render 'layouts/modals/modal-md' %>`);
+	}
+	$('#modal-md').modal({backdrop: 'static'});
+	$('#modal-md').find('.modal-title').html('Sign up');
+	$('#modal-md').find('.modal-body').html(`<%= render 'users/registrations/sign-up' %>`);
+}

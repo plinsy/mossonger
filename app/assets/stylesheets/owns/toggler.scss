@@ -1,0 +1,8 @@
+[data-toggle="chip"] .chip{
+	opacity: 0;
+	transition-duration: 250ms;
+}
+
+[data-toggle="chip"]:hover .chip{
+	opacity: 1;
+}

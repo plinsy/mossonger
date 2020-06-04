@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Space:</strong>
+  <%= @alien.space_id %>
+</p>
+
+<p>
+  <strong>Muteable:</strong>
+  <%= @alien.muteable_id %>
+</p>
+
+<%= link_to 'Edit', edit_alien_path(@alien) %> |
+<%= link_to 'Back', aliens_path %>

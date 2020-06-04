@@ -1,0 +1,90 @@
+<div data-toggle="chip" class="fixed right-16-p-lg right-13-p-md right-10-p-sm top-13-p-lg top-1 0-p-md bottom-10-p-sm">
+    <span class="chip">Sign up for free</span>
+    <%= link_to material_icon.add, new_user_registration_path, remote: true, class: "btn btn-float btn-success" %>
+</div>
+<section class="mt-lg-6 mt-md-5 mt-sm-3 px-sm-0 d-flex align-items-center container h-100-vh-lg">
+    <div class="container">
+        <div class="row">
+            <aside class="col-sm-12 col-md-6 py-md-5 py-sm-3">
+                <h1>Be together, <br>whenever.</h1>
+                <div>
+                    <p>
+                        A simple way to text, video chat and plan things all in one place.
+                    </p>
+                </div>
+                <div>
+                    <%= render 'users/sessions/login' %>
+                    <div>
+                        <div class="my-1">
+                            <a href="/download-on-app-store" title="" class="btn btn-dark">
+                                <div class="media">
+                                    <i class="fa fa-apple"></i>
+                                    <div class="media-body">
+                                        Download on the App Store
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="my-1">
+                            <a href="/download-on-play-store" title="" class="btn btn-dark">
+                                <div class="media">
+                                    <i class="fa fa-play"></i>
+                                    <div class="media-body">
+                                        GET IT ON Google Play
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <aside class="col-sm-12 col-md-6 py-md-5 py-sm-3">
+                <div>
+                    <%= image_tag 'pages/index/illustration1.png', class: "h-100 w-100" %>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+<section class="mt-lg-6 mt-md-5 mt-sm-10 px-sm-0 py-sm-3 d-flex align-items-center bg-light h-100-vh-lg">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center mb-3">So many ways to connect with all your friends</h1>
+            </div>
+            <aside class="col-sm-12 col-md-6 col-lg-4 py-md-7 py-sm-1 px-lg-5 px-md-4 mx-sm-auto">
+                <div class="card mx-3 br-20 h-100">
+                    <div class="p-3">
+                        <%= image_tag 'pages/index/illustration2.png', width: 200, class: 'card-img-top' %>
+                        <div class="card-body text-center">
+                            <h2 class="card-title">Get the group started</h2>
+                            <p class="card-text">Easily find your friends and get the group started, even without their phone numbers.</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <aside class="col-sm-12 col-md-6 col-lg-4 py-md-7 py-sm-1 px-lg-5 px-md-4 mx-sm-auto">
+                <div class="card mx-3 br-20 h-100">
+                    <div class="p-3">
+                        <%= image_tag 'pages/index/illustration3.png', width: 150, class: 'card-img-top' %>
+                        <div class="card-body text-center">
+                            <h2 class="card-title">Hang out and have fun together</h2>
+                            <p class="card-text">See who's online, send messages and reactions, and group video chat together. It's the closest to hanging out.</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <aside class="col-sm-12 col-md-6 col-lg-4 py-md-7 py-sm-1 px-lg-5 px-md-4 mx-sm-auto">
+                <div class="card mx-3 br-20 h-100">
+                    <div class="p-3">
+                        <%= image_tag 'pages/index/illustration4.png', width: 150, class: 'card-img-top' %>
+                        <div class="card-body text-center">
+                            <h2 class="card-title">Say everything better</h2>
+                            <p class="card-text">Make them laugh with stickers, GIFs and camera filters. Plus, choose available custom colors to make Messenger entirely yours.</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>

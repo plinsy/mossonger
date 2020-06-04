@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Blacklist:</strong>
+  <%= @condemned.blacklist_id %>
+</p>
+
+<p>
+  <strong>Blockable:</strong>
+  <%= @condemned.blockable_id %>
+</p>
+
+<%= link_to 'Edit', edit_condemned_path(@condemned) %> |
+<%= link_to 'Back', condemneds_path %>

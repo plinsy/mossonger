@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Condemneds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Blacklist</th>
+      <th>Blockable</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @condemneds.each do |condemned| %>
+      <tr>
+        <td><%= condemned.blacklist_id %></td>
+        <td><%= condemned.blockable_id %></td>
+        <td><%= link_to 'Show', condemned %></td>
+        <td><%= link_to 'Edit', edit_condemned_path(condemned) %></td>
+        <td><%= link_to 'Destroy', condemned, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Condemned', new_condemned_path %>

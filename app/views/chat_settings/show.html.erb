@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @chat_setting.user_id %>
+</p>
+
+<p>
+  <strong>Active status:</strong>
+  <%= @chat_setting.active_status %>
+</p>
+
+<p>
+  <strong>Enable sounds:</strong>
+  <%= @chat_setting.enable_sounds %>
+</p>
+
+<p>
+  <strong>Enable notifications:</strong>
+  <%= @chat_setting.enable_notifications %>
+</p>
+
+<%= link_to 'Edit', edit_chat_setting_path(@chat_setting) %> |
+<%= link_to 'Back', chat_settings_path %>

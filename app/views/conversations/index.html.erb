@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Conversations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Admin</th>
+      <th>Name</th>
+      <th>Receive notifications for messages</th>
+      <th>Receive notifications for reactions</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @conversations.each do |conversation| %>
+      <tr>
+        <td><%= conversation.admin_id %></td>
+        <td><%= conversation.name %></td>
+        <td><%= conversation.receive_notifications_for_messages %></td>
+        <td><%= conversation.receive_notifications_for_reactions %></td>
+        <td><%= link_to 'Show', conversation %></td>
+        <td><%= link_to 'Edit', edit_conversation_path(conversation) %></td>
+        <td><%= link_to 'Destroy', conversation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Conversation', new_conversation_path %>

@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light pb-sm-1 px-sm-0 py-md-3 px-md-3">
+    <div class="container">
+        <a class="navbar-brand" href="<%= root_path %>">
+            <%= image_tag current_user.avatar, alt: "avatar", class: "avatar h-100 rounded-circle" %>
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto justify-content-around">
+                <li class="nav-item">
+                    <%= link_to material_icon.phone, root_path, class: "btn btn-float shadow-none" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to material_icon.videocam, pages_features_path, class: "btn btn-float shadow-none" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to material_icon.info, pages_privacy_path, class: "btn btn-float shadow-none" %>
+                </li>
+            </ul>
+        </div>
+        <nav class="nav nav-tabs nav-justified flex-sm-row w-100" role="tablist">
+            <%= link_to material_icon.chat, "#unread", id: "unread-tab", data: {toggle: "tab"}, class: "nav-item nav-link" %>
+            <%= link_to material_icon.people, "#friends", id: "friends-tab", data: {toggle: "tab"}, class: "nav-item nav-link active" %>
+            <%= link_to material_icon.settings, "#settings", id: "settings-tab", data: {toggle: "tab"}, class: "nav-item nav-link" %>
+        </nav>
+    </div>
+</nav>
+<%# render 'layouts/offline/flashes' %>

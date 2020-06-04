@@ -1,0 +1,110 @@
+<%= simple_form_for(@chat_setting, remote: true) do |f| %>
+<%= f.error_notification %>
+<%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="form-inputs">
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-4">
+                <%= f.label :user, "Account" %>
+            </div>
+            <div class="col-sm-12 col-md-8">
+                <div class="form-row d-flex justify-content-between align-items-center">
+                    <div class="col-sm-12 col-md-2">
+                        <%= image_tag @chat_setting.user.avatar, size: 50, class: "border border-danger" %>
+                    </div>
+                    <div class="col-sm-12 col-md-10">
+                        <span>
+                            <%= @chat_setting.user.name %></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown-divider"></div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-4">
+                <%= f.label :active_status, "Active Status" %>
+            </div>
+            <div class="col-sm-12 col-md-8">
+                <div class="mb-2">
+                    <div class="d-flex justify-content-between">
+                        <%= f.label :active_status, "Show when you're active", class: "custom-control-label" %>
+                        <div class="custom-control custom-switch">
+                            <%= f.check_box :active_status, class: "custom-control-input" %>
+                            <span class="custom-control-track"></span>
+                            <%= f.label :active_status, class: "custom-control-label" do %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    Your friends ands contacs will see when you're active or recently active.
+                    You'all appear active or recently active unless
+                    you turn off the setting every place you're using Messenger or Facebook.
+                    You'll also see when yourfriends and contacts are active or recently active.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown-divider"></div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-4">
+                <%= f.label :enable_sounds, "Sounds" %>
+            </div>
+            <div class="col-sm-12 col-md-8">
+                <div class="custom-control custom-checkbox"></div>
+                <%= f.input :enable_sounds, label: "Enabled", class: "custom-control-input" %>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown-divider"></div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-4">
+                <%= f.label :enable_notifications, "Notifications" %>
+            </div>
+            <div class="col-sm-12 col-md-8">
+                <%= f.input :enable_notifications, label: "Desktop notifications enabled", class: "custom-control-input" %>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown-divider"></div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-4">
+                <label for="payments">Payments</label>
+            </div>
+            <div class="col-sm-12 col-md-8">
+                <a href="#payments" title="" class="font-weight-bold">Manage on Facebook</a>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown-divider"></div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-4">
+                <label for="blocking">Blocking</label>
+            </div>
+            <div class="col-sm-12 col-md-8">
+                <a href="#blocking" title="" class="font-weight-bold">Manage on Facebook</a>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown-divider"></div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-4">
+                <label for="emoji">Emoji</label>
+            </div>
+            <div class="col-sm-12 col-md-8">
+                <a href="#emoji" title="" class="font-weight-bold">Emojies goes here</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-actions text-right">
+    <%= f.button :submit, class: "btn btn-info w-100" %>
+</div>
+<% end %>

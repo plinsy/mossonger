@@ -1,0 +1,11 @@
+$primary-color: #ff4081;
+$danger-color: #f44336;
+
+.add-cancel-icons {
+    transition-duration: 250ms;
+}
+
+.add-cancel-icons:hover {
+	color: $danger-color;
+    transform: rotate(45deg);
+}

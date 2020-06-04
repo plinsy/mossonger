@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Chat Settings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Active status</th>
+      <th>Enable sounds</th>
+      <th>Enable notifications</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @chat_settings.each do |chat_setting| %>
+      <tr>
+        <td><%= chat_setting.user_id %></td>
+        <td><%= chat_setting.active_status %></td>
+        <td><%= chat_setting.enable_sounds %></td>
+        <td><%= chat_setting.enable_notifications %></td>
+        <td><%= link_to 'Show', chat_setting %></td>
+        <td><%= link_to 'Edit', edit_chat_setting_path(chat_setting) %></td>
+        <td><%= link_to 'Destroy', chat_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Chat Setting', new_chat_setting_path %>

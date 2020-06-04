@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Nicknames</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Conversation</th>
+      <th>User</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @nicknames.each do |nickname| %>
+      <tr>
+        <td><%= nickname.conversation_id %></td>
+        <td><%= nickname.user_id %></td>
+        <td><%= nickname.name %></td>
+        <td><%= link_to 'Show', nickname %></td>
+        <td><%= link_to 'Edit', edit_nickname_path(nickname) %></td>
+        <td><%= link_to 'Destroy', nickname, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Nickname', new_nickname_path %>
