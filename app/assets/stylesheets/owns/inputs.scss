@@ -1,12 +1,12 @@
 input,
-input:not(.form-input):focus {
+input:not(.form-input):not(.border-0):focus {
     padding: .5rem;
     border-radius: 7px;
     outline: none !important;
 }
 
 .input,
-.input:not(.form-input):focus,
+.input:not(.form-input):not(.border-0):focus,
 .form-inputs .chip,
 .form-inputs .chip:focus {
     padding: .5rem;
@@ -36,12 +36,12 @@ input {
     border: 1px black solid;
 }
 
-input:not(.form-input):focus {
+input:not(.form-input):not(.border-0):focus {
     border: 2px #4169e1 solid !important;
 }
 
-.form-inputs .chip:focus,
-.form-inputs .chip:hover {
+.form-inputs .chip:not(.disabled):focus,
+.form-inputs .chip:not(.disabled):hover {
     border: 1px #4169e1 solid !important;
 }
 

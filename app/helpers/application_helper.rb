@@ -26,4 +26,8 @@ module ApplicationHelper
   def authenticity_token
     session[:_csrf_token] ||= SecureRandom.base64(32)
   end
+
+  def not_found(q)
+    render partial: 'shared/not_found', locals: {q: q}
+  end
 end

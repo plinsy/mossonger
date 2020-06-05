@@ -2,3 +2,4 @@ toastr['success']('<%= @dropable_type.capitalize %> #<%= @dropable_id %> archive
 $("#<%= @dropable_type %>-<%= @dropable_id %>").fadeOut('slow', function() {
 	$(this).remove();
 });
+$('.modal').modal('hide');

@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light align-items-center border-bottom border-light h-8-vh pt-lg-2">
+    <div class="container-fluid">
+        <div class="dropdown">
+            <%= form_with(scope: :conversations, url: conversations_search_path) do |f| %>
+            <div class="w-100 align-items-center input-group bg-transparent">
+                <%= f.hidden_field :target, value: "#conversations_q" %>
+                <%= f.label :q, "To:", class: "input-group-prepend h6 m-0 text-muted mr-1" %>
+                <%= f.text_field :q, type: :search, autofocus: true, data: {target: "#msg-search-result"}, class: "col-11 border-0", placeholder: "Type the name of a person or group" %>
+                <%= f.submit "Submit", :disable_with => 'Submiting...', id: "search-conversation-btn", class: "d-none collapse" %>
+            </div>
+            <% end %>
+            <div id="msg-search-result" class="dropdown-menu dropdown-menu-left py-0 w-25-vw-lg w-100-vw-md w-100-vw-sm">
+                <div class="progress position-absolute w-100">
+                    <div class="progress-bar progress-bar-indeterminate" role="progressbar"></div>
+                </div>
+                <li class="dropdown-item my-3">
+                    <span>Searching...</span>
+                </li>
+            </div>
+        </div>
+    </div>
+</nav>
+<%# render 'layouts/offline/flashes' %>

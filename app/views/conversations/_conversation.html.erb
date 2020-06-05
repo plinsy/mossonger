@@ -1,6 +1,6 @@
-<% guest = conversation.is_a_dialog? ? current_user.second_in(conversation) : conversation.last_writter %>
-<li class="list-group-item py-md-1 pr-md-1 pl-md-1 py-sm-0 pr-sm-1 pl-sm-0 my-2 border-0 shadow-none">
-    <%= link_to conversation, class: "" do %>
+<li id="conversation-<%= conversation.id %>" class="list-group-item py-md-1 pr-md-1 pl-md-1 py-sm-0 pr-sm-1 pl-sm-0 my-2 border-0 shadow-none">
+    <% guest = conversation.is_a_dialog? ? current_user.second_in(conversation) : conversation.last_writter %>
+    <%= link_to conversation, class: "d-block" do %>
     <div class="d-flex justify-content-between align-items-center">
         <div class="media justify-content-between align-items-center">
             <%= image_tag guest.avatar, size: 45, class: "h-100 w-3-vw-lg w-5-vw-md w-15-vw-sm rounded-circle" %>
@@ -8,21 +8,33 @@
                 <p class="m-0 text-dark">
                     <%= guest.name %>
                 </p>
+                <% if show_options %>
                 <p class="message-content text-muted small m-0">
                     <%= conversation.messages.last.sender.name %>:
                     <%= conversation.messages.last.content %>
                     <%= conversation.messages.last.created_at.strftime("%H:%M %P").upcase %>
                 </p>
+                <% end %>
             </div>
         </div>
-        <% if false %>
-        <small class="d-none d-lg-block">
-            <%= "Active #{time_ago_in_words(guest.last_sign_in_at)} ago" %></small>
-        <% end %>
+        <% if show_options %>
         <div class="dropdown d-none d-lg-block">
+            <% if conversation.muted_for?(current_user) %>
+            <small class="d-sm-none d-lg-block less text-muted">
+                <%= material_icon.volume_off %></small>
+            <% else %>
+            <% if guest.is_online %>
+            <small class="d-sm-none d-lg-block less">
+                <%= image_tag guest.avatar, size: 20, class: "border border-info rounded-circle" %></small>
+            <% end %>
+            <% end %>
             <%= link_to material_icon.more_horiz, '#more', data: {toggle: 'dropdown'}, class: 'more' %>
             <div class="dropdown-menu dropdown-menu-right">
-                <%= link_to "Mute", "#mute", class: "dropdown-item" %>
+                <% if conversation.muted_for?(current_user) %>
+                <%= link_to "Unmute", mute_path("conversation", conversation), remote: true, class: "dropdown-item" %>
+                <% else %>
+                <%= link_to "Mute", mute_path("conversation", conversation), remote: true, class: "dropdown-item" %>
+                <% end %>
                 <div class="dropdown-divider"></div>
                 <%= link_to "Leave Group", "#leave-group", class: "dropdown-item" %>
                 <%= link_to "Hide", "#hide", class: "dropdown-item" %>
@@ -33,6 +45,7 @@
                 <%= link_to "Ignore Messages", "#ignore-messages", class: "dropdown-item" %>
             </div>
         </div>
+        <% end %>
     </div>
     <% end %>
 </li>

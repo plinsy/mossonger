@@ -1,5 +1,6 @@
 class SpacesController < ApplicationController
-  before_action :set_space, only: [:show, :edit, :update, :destroy]
+  before_action :set_space, only: [:show, :edit, :update, :destroy, :mute]
+  before_action :set_muteable, only: %i(mute)
 
   # GET /spaces
   # GET /spaces.json
@@ -61,14 +62,36 @@ class SpacesController < ApplicationController
     end
   end
 
+  def mute
+    respond_to do |format|
+      if @space.mute(@muteable)
+        format.js
+      else
+        format.js {
+          flash[:error] = "Not archived"
+          not_created
+        }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_space
-      @space = Space.find(params[:id])
+      @space = current_user.space
     end
 
     # Only allow a list of trusted parameters through.
     def space_params
       params.require(:space).permit(:admin_id)
+    end
+
+    def set_muteable
+      @muteable_type = params[:muteable_type]
+      @muteable_id = params[:muteable_id]
+      case @muteable_type
+      when 'conversation'
+        @muteable = Conversation.find(@muteable_id)
+      end
     end
 end

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   default_url_options host: "127.0.0.1:3000"
   resources :readings
+  resources :messages, only: %i(create)
+  get '/new', to: 'messages#new', as: 'new_message'
+  post '/conversations/search', to: 'conversations#search', as: 'conversations_search'
   resources :conversations do
     delete '/invitations', to: "invitations#destroy_all", as: "destroy_all_invitations"
     resources :invitations
@@ -10,6 +13,7 @@ Rails.application.routes.draw do
   resources :condemneds
   resources :blacklists
   resources :aliens
+  get '/mute/:muteable_type/:muteable_id', to: "spaces#mute", as: "mute"
   resources :spaces
   resources :secrets
   resources :hiding_places

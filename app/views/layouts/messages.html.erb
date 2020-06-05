@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%= render 'layouts/online/head' %>
+</head>
+
+<body class="online h-100-vh hidden-y hidden-x <%= controller_name %> <%= action_name %>" data-profile="<%= current_user.id %>" data-c_id="<%= @conversation ? @conversation.id : 0 %>">
+    <div class="row hidden-y hidden-x">
+        <aside id="side-left" class="col-2 col-sm-2 col-md-1 col-lg-3 px-0">
+            <%= render 'messages/nav-left' %>
+        </aside>
+        <aside class="col-10 col-sm-10 col-md-11 col-lg-9 px-0">
+            <%= render 'messages/new' %>
+            <div class="hidden-x chat-body">
+                <%= yield %>
+            </div>
+        </aside>
+    </div>
+</body>
+
+</html>

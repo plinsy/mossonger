@@ -1,7 +1,9 @@
 class MessagesController < ApplicationController
-  before_action :set_conversation
+  include ConversationsHelper
+  before_action :set_conversations
+  before_action :set_conversation, except: [:new]
   before_action :set_message, only: [:show, :edit, :update, :destroy]
-
+  layout 'messages'
   # GET /messages
   # GET /messages.json
   def index
@@ -15,7 +17,11 @@ class MessagesController < ApplicationController
 
   # GET /messages/new
   def new
-    @message = @conversation.messages.new
+    @message = current_user.messages.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /messages/1/edit

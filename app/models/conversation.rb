@@ -6,6 +6,8 @@ class Conversation < ApplicationRecord
   has_many :nicknames, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :readings, dependent: :destroy
+  has_many :aliens, as: :muteable, dependent: :destroy
+    has_many :spaces, through: :aliens
 
   after_create_commit :init_self
   before_validation :add_default_name
@@ -67,6 +69,11 @@ class Conversation < ApplicationRecord
     return s + [self.admin]
   end
 
+  def speakers_names
+    names = speakers.map { |s| s.name }
+    return names.join(', ').downcase
+  end
+
   def is_a_monolog?
     self.is_a_dialog? && self.guests == [self.admin]
   end
@@ -84,5 +91,21 @@ class Conversation < ApplicationRecord
       return true if invitation.is_not_accepted
     end
     return false
+  end
+
+  def self.search(q, user)
+    q.downcase!
+    contacts = select { |c| c.is_a_dialog? && c.speakers.include?(user) && (c.name.include?(q) || c.speakers_names.include?(q)) }
+    groups = select { |c| c.is_in_group? && c.speakers.include?(user) && (c.name.include?(q) || c.speakers_names.include?(q)) }
+    more = select { |c| c.name.include?(q) || c.speakers_names.include?(q) }
+    result = [contacts, groups, more]
+  end
+
+  def muted_for?(user)
+    user.aliens.where(muteable: self).any?
+  end
+
+  def alien_from(user)
+    self.aliens.where(space: user.space)
   end
 end

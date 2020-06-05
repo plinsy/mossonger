@@ -1,0 +1,9 @@
+muteable_type = "<%= @muteable_type %>";
+switch (muteable_type) {
+	case "conversation":
+		$("#conversation-<%= @muteable_id %>").replaceWith(`<%= render @muteable, show_options: true %>`);
+		break;
+	default:
+		toastr['error']('Muteable entity not supported');
+		break;
+}

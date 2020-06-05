@@ -1,1 +1,5 @@
-toastr['error'](`<%= flash[:danger] %>`);
+if (<%= flash[:danger] %>) {
+    toastr['error'](`<%= flash[:danger] %>`);
+} else {
+	
+}

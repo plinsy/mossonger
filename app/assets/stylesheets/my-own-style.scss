@@ -106,7 +106,7 @@ a:hover {
     }
 
     .list-group-item:hover .dropdown .less {
-        display: none;
+        display: none !important;
     }
 
     .list-group-item .dropdown .less {

@@ -27,7 +27,7 @@ consumer.subscriptions.create("ConversationChannel", {
     }
 });
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
     function gotoBottom(id) {
         var element = document.getElementById(id);
         element.scrollTop = element.scrollHeight - element.clientHeight;
@@ -65,10 +65,35 @@ $(document).ready(function() {
     });
 
     // message content
-    $('.message .content').contextmenu(function(e) {
+    $('.message .content').on('dblclick click', function(e) {
         e.preventDefault();
         var target = $(this).data('target'),
             $target = $(target);
-        $target.show();
+        $target.modal('show');
+    });
+    $('.message .content').mouseout(function(event) {
+        var target = $(this).data('target'),
+            $target = $(target);
+        $target.removeClass('show');
+    });
+
+    // conversations search
+    $('#conversations_q').keyup(function(event) {
+        var target = $(this).data('target'),
+            $target = $(target);
+
+        if ($target.hasClass('dropdown-menu')) {
+            if (event.target.value == "") {
+                $target.dropdown('hide');
+            } else {
+                $target.dropdown('show');
+            }
+        }
+        $('#search-conversation-btn').click();
+    });
+
+    // no right click
+    $('body.conversations').on('contextmenu', function(e) {
+        e.preventDefault();
     });
 });

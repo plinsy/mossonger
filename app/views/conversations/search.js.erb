@@ -1,0 +1,7 @@
+target = $('<%= @target %>').data('target');
+$target = $(target);
+if (<%= @contacts.any? || @groups.any? || @more.any? %>) {
+	$target.html(`<%= render 'messages/targets', contacts: @contacts, groups: @groups, more: @more %>`);
+} else {
+	$target.html(`<%= not_found(@q) %>`);
+}

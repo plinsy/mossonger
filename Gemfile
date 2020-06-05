@@ -58,3 +58,5 @@ gem 'simple_form'
 gem 'toastr-rails'
 
 gem 'cancancan'
+gem 'masonry-rails'
+gem 'kaminari'

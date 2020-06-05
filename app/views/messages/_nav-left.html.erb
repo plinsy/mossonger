@@ -28,20 +28,35 @@
     </div>
 </nav>
 <div class="border-right border-light h-7-vh d-none d-lg-block">
-    <%= form_with(scope: :conversations, url: conversations_search_path) do |f| %>
-    <%= f.hidden_field :target, value: "#conversations_q" %>
-    <%= f.submit "Submit", :disable_with => 'Submiting...', id: "search-conversation-btn", class: "d-none collapse" %>
-    <div class="px-2 pt-2 pb-3">
-        <div class="input-group bg-light px-3 br-25">
-            <%= f.label :q, class: "input-group-prepend" do %>
-                <span class="material-icons">search</span>
-            <% end %>
-            <%= f.text_field :q, data: {target: "#msg-search-result"}, class: "form-input border-0 bg-transparent", placeholder: "Search" %>
+    <form action="/search-user" method="get" accept-charset="utf-8">
+        <div class="px-2 pt-2 pb-3">
+            <div class="input-group bg-light px-3 br-25">
+                <label for="q" class="input-group-prepend">
+                    <span class="material-icons">search</span>
+                </label>
+                <input type="text" id="q" name="q" placeholder="Search" class="form-input border-0 bg-transparent">
+            </div>
+            </span>
         </div>
-        </span>
-    </div>
-    <% end %>
+    </form>
 </div>
-<ul id="msg-search-result" class="h-85-vh-lg h-92-vh-md h-92-vh-sm scroll-y hidden-x py-0 pl-1 px-md-2 border-right border-light">
+<ul class="h-85-vh-lg h-92-vh-md h-92-vh-sm scroll-y hidden-x py-0 pl-1 px-md-2 border-right border-light">
+    <li class="list-group-item py-md-1 pr-md-1 pl-md-1 py-sm-0 pr-sm-1 pl-sm-0 my-2 border-0 shadow-none bg-light">
+        <%= link_to new_message_path, class: "" do %>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="media justify-content-between align-items-center">
+                <%= image_tag current_user.avatar, size: 45, class: "h-100 w-3-vw-lg w-5-vw-md w-15-vw-sm rounded-circle" %>
+                <div class="media-body d-none d-lg-block">
+                    <p class="m-0 text-dark">
+                        New message
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown d-none d-lg-block">
+                <%= link_to material_icon.cancel, conversations_path, class: 'more shadow-none' %>
+            </div>
+        </div>
+        <% end %>
+    </li>
     <%= render @availables_conversations, show_options: true %>
 </ul>

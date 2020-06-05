@@ -3,16 +3,54 @@
         <%= message.sender.nickname_at(message.conversation).name %></small>
     <div class="d-flex <%= message.position_for(current_user) %>">
         <%= image_tag url_for(message.sender.avatar), data: {toggle: "tooltip", placement: "bottom"}, title: message.sender.name, class: "btn btn-sm btn-float shadow-none border border-info" %>
-        <div data-toggle="tooltip" data-placement="bottom" data-container="body" title="<%= I18n.l(message.created_at, format: :long) %>" class="mx-1">
-            <div data-target="#message-content-menu-<%= message.id %>" class="content bg-<%= message.color_for(current_user) %> p-2 br-25 text-<%= message.direction_for(current_user) %>">
+        <div data-toggle="tooltip" data-placement="bottom" data-container="body" data-trigger="hover" title="<%= I18n.l(message.created_at, format: :long) %>" class="mx-1">
+            <button data-target="#message-content-menu-<%= message.id %>" class="content bg-<%= message.color_for(current_user) %> p-2 br-25 text-<%= message.direction_for(current_user) %> border-0">
                 <%= message.content %>
-            </div>
-            <div id="message-content-menu-<%= message.id %>" class="snackbar">
-                <div class="snackbar-body">
-                    Single line of text directly related to the operation performed
+            </button>
+            <div id="message-content-menu-<%= message.id %>" class="modal w-100-vw h-100-vh">
+                <div class="modal-dialog modal-sm modal-dialog-centered">
+                    <div class="modal-content br-50">
+                        <div class="modal-body w-100">
+                            <ul class="d-flex justify-content-between m-0 p-0">
+                                <li class="list-inline-item">
+                                    <%= link_to material_icon.archive, drop_path('message', message), remote: true, class: "text-danger md-36" %>
+                                </li>
+                                <li class="list-inline-item">
+                                    <%= link_to '.copy', class: "text-info md-36" do %>
+                                    <i class="fa fa-copy fa-2x"></i>
+                                    <% end %>
+                                </li>
+                                <li class="list-inline-item">
+                                    <%= link_to material_icon.insert_emoticon, '.react', class: "text-warning md-36" %>
+                                </li>
+                                <li class="list-inline-item">
+                                    <%= link_to material_icon.forward, '.forward', class: "text-success md-36" %>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <button class="snackbar-btn" type="button">Action</button>
             </div>
+            <!-- <div id="message-content-menu-<%#= message.id %>" class="snackbar">
+                <div class="snackbar-body w-100 d-md-none">
+                    <ul class="d-flex justify-content-between m-0 p-0">
+                        <li class="list-inline-item">
+                            <%#= link_to material_icon.archive, drop_path('message', message), remote: true, class: "text-danger md-36" %>
+                        </li>
+                        <li class="list-inline-item">
+                            <%#= link_to '.copy', class: "text-info md-36" do %>
+                            <i class="fa fa-copy"></i>
+                            <%# end %>
+                        </li>
+                        <li class="list-inline-item">
+                            <%#= link_to material_icon.insert_emoticon, '.react', class: "text-warning md-36" %>
+                        </li>
+                        <li class="list-inline-item">
+                            <%#= link_to material_icon.forward, '.forward', class: "text-success md-36" %>
+                        </li>
+                    </ul>
+                </div>
+            </div> -->
         </div>
         <div class="icons <%= message.position_for(current_user) %> d-sm-none d-md-flex">
             <%= link_to material_icon.insert_emoticon, "#react", data: {toggle: "tooltip", placement: "bottom"}, title: "React", class: "btn btn-sm btn-float shadow-none text-warning" %>

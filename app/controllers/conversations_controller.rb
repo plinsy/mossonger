@@ -1,9 +1,10 @@
 class ConversationsController < ApplicationController
+  include ConversationsHelper
+  
   before_action :set_conversations
   before_action :set_conversation, only: [:show, :edit, :update, :destroy]
-  before_action :set_current_conversation, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_conversation, only: [:show, :edit, :update, :destroy]  
 
-  # GET /conversations
   # GET /conversations.json
   def index
   end
@@ -12,6 +13,7 @@ class ConversationsController < ApplicationController
   # GET /conversations/1.json
   def show
     @messages = @conversation.messages.availables.sort { |a, b| a.created_at }
+    @paged_msgs = Kaminari.paginate_array(@messages).page(params[:msg_page]).per(25)
     @react_messages = @conversation.react_messages_for(current_user)
     @message = @conversation.messages.new
   end
@@ -66,6 +68,18 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def search
+    @q = params[:conversations][:q]
+    @target = params[:conversations][:target]
+    @result = Conversation.search(@q, current_user)
+    @contacts = @result[0]
+    @groups = @result[1]
+    @more = @result[2]
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conversation
@@ -77,12 +91,6 @@ class ConversationsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def conversation_params
       params.require(:conversation).permit(:admin_id, :name, :receive_notifications_for_messages, :receive_notifications_for_reactions, :logo)
-    end
-
-    def set_conversations
-      @conversations = []
-      @availables_conversations = current_user.all_availables_conversations
-      @pending_conversations = current_user.pending_conversations
     end
 
     def set_current_conversation
