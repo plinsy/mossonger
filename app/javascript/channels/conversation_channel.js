@@ -88,16 +88,9 @@ $(document).on('turbolinks:load', function() {
         mousescrollstep: 100 // scrolling speed with mouse wheel (pixel)
     }).resize();
 
-
-    function gotoBottom(id) {
-        var element = document.getElementById(id);
-        element.scrollTop = element.scrollHeight - element.clientHeight;
-    }
-
     var $messages = $("#messages"),
         lastMessage = $messages.find('.message:last');
     // $messages.animate({ scrollTop: 999999999 }, 1500, function() {});
-    $("[data-toggle='tooltip']").tooltip({ boundary: 'window' });
     var $newMsgForm = $('#new-message-form'),
         $submitBtn = $newMsgForm.find('[type="submit"]'),
         $input = $newMsgForm.find('textarea');
@@ -125,29 +118,6 @@ $(document).on('turbolinks:load', function() {
         });
     });
 
-    // message content
-    $('.message .content').on('mousedown', function(e) {
-        var href = $(this).attr('href'),
-            $href = $(href);
-        $href.toggleClass('show');
-    });
-    $('.message .content').on('dblclick', function(e) {
-        e.preventDefault();
-        var target = $(this).data('target'),
-            $target = $(target);
-        $target.modal('show');
-    });
-    $('.message .content').hover(function() {
-
-    }, function() {
-        var target = $(this).data('target'),
-            href = $(this).attr('href'),
-            $target = $(target),
-            $href = $(href);
-        $target.removeClass('show');
-        $href.removeClass('show');
-    });
-
     // conversations search
     $('#conversations_q').keyup(function(event) {
         var target = $(this).data('target'),
@@ -173,4 +143,32 @@ $(document).on('turbolinks:load', function() {
         /* Act on the event */
         $(this).toggleClass('active');
     });
+
+    setInterval(function() {
+        $("[data-toggle='tooltip']").tooltip({ boundary: 'window' });
+        // message content
+        $('.message .content').on('mousedown', function(e) {
+            var href = $(this).attr('href'),
+                $href = $(href);
+            $href.toggleClass('show');
+        });
+        $('.message .content').on('dblclick', function(e) {
+            e.preventDefault();
+            var target = $(this).data('target'),
+                $target = $(target);
+            $target.modal('show');
+        });
+        $('.message .content').hover(function() {
+
+        }, function() {
+            var target = $(this).data('target'),
+                href = $(this).attr('href'),
+                $target = $(target),
+                $href = $(href);
+            $target.removeClass('show');
+            $href.removeClass('show');
+        });
+
+        $chat_body.getNiceScroll().resize();
+    }, 500);
 });
