@@ -170,5 +170,5 @@ $(document).on('turbolinks:load', function() {
         });
 
         $chat_body.getNiceScroll().resize();
-    }, 500);
+    }, 3000);
 });
