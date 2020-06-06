@@ -7,7 +7,8 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = @conversation.messages
+    @messages = @conversation.messages.select { |m| m.persisted? }.sort { |a, b| a.created_at }
+    @msg_pagy, @msgs = pagy_array(@messages, items: 25, page_param: :msgs_page, msgs_page: params[:msgs_page])
   end
 
   # GET /messages/1

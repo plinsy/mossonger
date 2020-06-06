@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def page_not_free?
     return %(pages).exclude?(controller_name)
   end

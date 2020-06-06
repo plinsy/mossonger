@@ -1,3 +1,10 @@
 toastr['success']('<%= @dropable_type.capitalize %> #<%= @dropable_id %> archived');
-$("#<%= @dropable_type %>-<%= @dropable_id %>").replaceWith(`<%= render @dropable %>`);
-$('.modal.show:first').modal('hide');
+$('.modal').fadeOut('fast', function() {
+	$(this).remove();
+});
+$('.modal-backdrop.show').fadeOut('fast', function() {
+	$(this).remove();
+});
+setTimeout(function(){
+	$("#<%= @dropable_type %>-<%= @dropable_id %>").replaceWith(`<%= render @dropable %>`);
+}, 100);

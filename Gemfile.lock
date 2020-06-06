@@ -135,6 +135,7 @@ GEM
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    pagy (3.8.1)
     pg (1.2.3)
     popper_js (1.16.0)
     puma (4.3.1)
@@ -256,6 +257,7 @@ DEPENDENCIES
   masonry-rails
   material-sass (= 4.1.1)
   material_icons
+  pagy
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.1)

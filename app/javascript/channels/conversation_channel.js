@@ -29,7 +29,7 @@ consumer.subscriptions.create("ConversationChannel", {
                 cursorborderradius: "5px",
                 scrollspeed: 100,
                 mousescrollstep: 40
-            });
+            }).resize();
             // $messages.animate({ scrollTop: 999999999 }, 'fast', function() {});
         }
         // Called when there's incoming data on the websocket for this channel
@@ -86,7 +86,7 @@ $(document).on('turbolinks:load', function() {
         cursorborderradius: "5px", // border radius in pixel for cursor
         scrollspeed: 100, // scrolling speed
         mousescrollstep: 100 // scrolling speed with mouse wheel (pixel)
-    });
+    }).resize();
 
 
     function gotoBottom(id) {
@@ -166,5 +166,11 @@ $(document).on('turbolinks:load', function() {
     // no right click
     $('body.conversations').on('contextmenu', function(e) {
         e.preventDefault();
+    });
+
+    // .add-cancel-icons
+    $('.add-cancel-icons').click(function(event) {
+        /* Act on the event */
+        $(this).toggleClass('active');
     });
 });

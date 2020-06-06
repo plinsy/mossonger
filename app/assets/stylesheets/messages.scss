@@ -5,7 +5,7 @@ $danger-color: #f44336;
     transition-duration: 250ms;
 }
 
-.add-cancel-icons:hover {
+.add-cancel-icons.active {
 	color: $danger-color;
     transform: rotate(45deg);
 }

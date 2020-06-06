@@ -1,8 +1,9 @@
 <section id="messages-container" class="d-flex justify-content-between h-100">
     <div class="row h-100 flex-sm-row">
         <div class="col col-sm col-md col-lg px-lg-3 px-md-1 px-sm-1 px-1">
+            <%= link_to "More previous messages", conversation_messages_path(@conversation, msgs_page: 2), remote: true, id: "more-msgs-link", class: "btn btn-outline-info border border-info w-100" %>
             <section id="messages" class="py-3">
-                <%= render @messages %>
+                <%= render @msgs.reverse %>
                 <%# react_component('Messages', {messages: @react_messages}) %>
             </section>
             <div class="row">
