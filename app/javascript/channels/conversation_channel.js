@@ -61,7 +61,17 @@ $(document).on('turbolinks:load', function() {
             }
             $('#fullscreen-icon').html('fullscreen');
         } else {
-            document.body.requestFullscreen();
+            var docElm = document.body; // dark mode
+            // var docElm = document.documentElement;
+            if (docElm.requestFullscreen) {
+                docElm.requestFullscreen();
+            } else if (docElm.mozRequestFullScreen) {
+                docElm.mozRequestFullScreen();
+            } else if (docElm.webkitRequestFullScreen) {
+                docElm.webkitRequestFullScreen();
+            } else if (docElm.msRequestFullscreen) {
+                docElm.msRequestFullscreen();
+            }
             $('#fullscreen-icon').html('fullscreen_exit');
         }
     }

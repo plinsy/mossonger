@@ -7,6 +7,8 @@ class Message < ApplicationRecord
     has_many :readers, class_name: "User", through: :readings, source: :user
 
   has_many :trashes, as: :trashable
+  has_many :dropboxes, through: :trashes
+  has_many :droppers, class_name: "User", through: :dropboxes, source: :admin
 
   validates_presence_of :content
 

@@ -6,7 +6,7 @@
         <div data-toggle="tooltip" data-placement="bottom" data-container="body" data-trigger="hover" title="" class="mx-1 text-<%= message.direction_for(current_user) %>">
             <button href="#message-readers-<%= message.id %>" data-target="#message-content-menu-<%= message.id %>" class="content bg-<%= message.color_for(current_user) %> p-2 br-25 text-<%= message.direction_for(current_user) %> border-0">
                 <% if message.dropped? %>
-                <span data-toggle="tooltip" data-html="true" title="<div>Sent: <%= message.created_at.strftime('%H:%M %P') %></div><div>Removed: <%= message.dropped_at.strftime('%H:%M %P') %></div>" ><%= (current_user == message.sender ? "You" : message.nickname.name) + " removed a message" %></span>
+                <span data-toggle="tooltip" data-html="true" title="<div>Sent: <%= message.created_at.strftime('%H:%M %P') %></div><div>Removed: <%= message.dropped_at.strftime('%H:%M %P') %></div>" ><%= (message.droppers.include?(current_user) ? "You" : message.nickname.name) + " removed a message" %></span>
                 <% else %>
                 <%= message.content %>
                 <% end %>
