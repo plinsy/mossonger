@@ -76,18 +76,6 @@ $(document).on('turbolinks:load', function() {
         }
     }
 
-    var $chat_body = $('.chat-body:first');
-    $chat_body.scrollTop($chat_body.get(0).scrollHeight, -1).niceScroll({
-        cursorcolor: "#424242", // change cursor color in hex
-        cursoropacitymin: 0, // change opacity when cursor is inactive (scrollabar "hidden" state), range from 1 to 0
-        cursoropacitymax: 1, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
-        cursorwidth: "5px", // cursor width in pixel (you can also write "5px")
-        cursorborder: "1px solid #fff", // css definition for cursor border
-        cursorborderradius: "5px", // border radius in pixel for cursor
-        scrollspeed: 100, // scrolling speed
-        mousescrollstep: 100 // scrolling speed with mouse wheel (pixel)
-    }).resize();
-
     var $messages = $("#messages"),
         lastMessage = $messages.find('.message:last');
     // $messages.animate({ scrollTop: 999999999 }, 1500, function() {});
@@ -144,31 +132,9 @@ $(document).on('turbolinks:load', function() {
         $(this).toggleClass('active');
     });
 
-    setInterval(function() {
-        $("[data-toggle='tooltip']").tooltip({ boundary: 'window' });
-        // message content
-        $('.message .content').on('mousedown', function(e) {
-            var href = $(this).attr('href'),
-                $href = $(href);
-            $href.toggleClass('show');
-        });
-        $('.message .content').on('dblclick', function(e) {
-            e.preventDefault();
-            var target = $(this).data('target'),
-                $target = $(target);
-            $target.modal('show');
-        });
-        $('.message .content').hover(function() {
-
-        }, function() {
-            var target = $(this).data('target'),
-                href = $(this).attr('href'),
-                $target = $(target),
-                $href = $(href);
-            $target.removeClass('show');
-            $href.removeClass('show');
-        });
-
-        $chat_body.getNiceScroll().resize();
-    }, 3000);
+    $.getScript('/assets/application.js', function() {
+        loadTooltip();
+        animateMessageContent();
+        loadNiceScroll();
+    });
 });

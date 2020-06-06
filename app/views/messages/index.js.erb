@@ -5,3 +5,8 @@ if (<%= @msg_pagy.next.nil? %>) {
 } else {
     $("#more-msgs-link").attr("href", `<%= conversation_messages_path(@conversation, msgs_page: @msg_pagy.next) %>`);
 }
+$.getScript('/assets/application.js', function() {
+    loadTooltip();
+    animateMessageContent();
+    loadNiceScroll();
+});
