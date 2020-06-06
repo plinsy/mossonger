@@ -12,7 +12,7 @@ class ConversationsController < ApplicationController
   # GET /conversations/1
   # GET /conversations/1.json
   def show
-    @messages = @conversation.messages.sort { |a, b| a.created_at }
+    @messages = @conversation.messages.select { |m| m.persisted? }
     @paged_msgs = Kaminari.paginate_array(@messages).page(params[:msg_page]).per(25)
     @react_messages = @conversation.react_messages_for(current_user)
     @message = @conversation.messages.new

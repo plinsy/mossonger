@@ -12,13 +12,24 @@ consumer.subscriptions.create("ConversationChannel", {
     received(data) {
         if ($('body').data('c_id') == data['c_id']) {
             var $messages = $("#messages"),
-                $conversation = $('#conversation-'+data['c_id']);
+                $conversation = $('#conversation-' + data['c_id']);
             if ($('body').data('profile') == data['sender_id']) {
-                $messages.prepend(data['message_sender_view']);
+                $messages.append(data['message_sender_view']);
             } else {
-                $messages.prepend(data['message_guests_view']);
+                $messages.append(data['message_guests_view']);
             }
             $conversation.replaceWith(data['c_view']);
+            var $chat_body = $('.chat-body:first');
+            $chat_body.scrollTop($chat_body.get(0).scrollHeight, -1).niceScroll({
+                cursorcolor: "#424242",
+                cursoropacitymin: 0,
+                cursoropacitymax: 1,
+                cursorwidth: "5px",
+                cursorborder: "1px solid #fff",
+                cursorborderradius: "5px",
+                scrollspeed: 100,
+                mousescrollstep: 40
+            });
             // $messages.animate({ scrollTop: 999999999 }, 'fast', function() {});
         }
         // Called when there's incoming data on the websocket for this channel
@@ -30,6 +41,44 @@ consumer.subscriptions.create("ConversationChannel", {
 });
 
 $(document).on('turbolinks:load', function() {
+    // $("#messages").niceScroll({cursorcolor:"#00F"});
+    var goFS = document.getElementById("goFS");
+    goFS.addEventListener("click", function() {
+        toggleFullScreen();
+    }, false);
+
+    function toggleFullScreen() {
+        var isInFullScreen = document.fullscreenElement && document.fullscreenElement !== null;
+        if (isInFullScreen) {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+            $('#fullscreen-icon').html('fullscreen');
+        } else {
+            document.body.requestFullscreen();
+            $('#fullscreen-icon').html('fullscreen_exit');
+        }
+    }
+
+    var $chat_body = $('.chat-body:first');
+    $chat_body.scrollTop($chat_body.get(0).scrollHeight, -1).niceScroll({
+        cursorcolor: "#424242", // change cursor color in hex
+        cursoropacitymin: 0, // change opacity when cursor is inactive (scrollabar "hidden" state), range from 1 to 0
+        cursoropacitymax: 1, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
+        cursorwidth: "5px", // cursor width in pixel (you can also write "5px")
+        cursorborder: "1px solid #fff", // css definition for cursor border
+        cursorborderradius: "5px", // border radius in pixel for cursor
+        scrollspeed: 100, // scrolling speed
+        mousescrollstep: 100 // scrolling speed with mouse wheel (pixel)
+    });
+
+
     function gotoBottom(id) {
         var element = document.getElementById(id);
         element.scrollTop = element.scrollHeight - element.clientHeight;
@@ -79,7 +128,7 @@ $(document).on('turbolinks:load', function() {
         $target.modal('show');
     });
     $('.message .content').hover(function() {
-        
+
     }, function() {
         var target = $(this).data('target'),
             href = $(this).attr('href'),

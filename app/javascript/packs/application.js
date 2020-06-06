@@ -6,6 +6,7 @@
 import 'bootstrap';
 
 require("@rails/ujs").start()
+require('jquery');
 require("turbolinks").start()
 const material = require('material');
 import './src/application.scss'
@@ -17,6 +18,7 @@ require("@rails/activestorage").start()
 require("channels")
 
 require('./conversations')
+require('./jquery-nicescroll.min.js')
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

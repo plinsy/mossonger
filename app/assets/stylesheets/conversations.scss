@@ -16,8 +16,9 @@
 
 @media (max-width: 767px) {
 
-    #messages{
-        height: calc(100vh - 104.86px);
+    #messages,
+    .chat-body {
+        height: calc(100vh - 104.86px) !important;
     }
 }
 

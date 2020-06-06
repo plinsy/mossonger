@@ -5,4 +5,8 @@ class ApplicationRecord < ActiveRecord::Base
   def dropped?
   	Trash.where(trashable: self).any?
   end
+
+  def dropped_at
+  	self.sender.dropbox.trashes.where(trashable: self).first.created_at
+  end
 end
