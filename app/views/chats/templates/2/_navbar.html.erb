@@ -1,12 +1,27 @@
-<nav class="navbar navbar-expand-lg navbar-light align-items-center border-bottom border-light h-8-vh pt-lg-2">
-    <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light align-items-center border-bottom border-light h-8-vh pt-lg-2 px-1 px-sm-1 px-md-3">
+    <div class="w-100 px-0 d-flex justify-content-between">
         <a class="navbar-brand" href="<%= root_path %>">
-            <% if action_name == "index" %>
-        	<%= image_tag "logos/default-room.png", size: 25, alt: "nav-logo", class: "app-logo btn-sm btn btn-float shadow-none" %>
+            <% if @conversation %>
+            <%= image_tag @conversation.is_in_group? ? @conversation.logo : current_user.second_in(@conversation).avatar, size: 25, alt: "nav-logo", class: " conversation-logo btn-sm btn btn-float shadow-none border border-info" %>
+            <div class="ml-2 d-sm-none d-md-block">
+                <h5 class="m-0">
+                    <%= current_user.second_in(@conversation).name %>
+                </h5>
+                <small class="text-muted">
+                    Active
+                    <%= time_ago_in_words(current_user.second_in(@conversation).last_sign_in_at) %>
+                </small>
+            </div>
             <% else %>
-            <%= image_tag @conversation.logo, size: 25, alt: "nav-logo", class: " conversation-logo btn-sm btn btn-float shadow-none" %>
+            <%= image_tag "logos/default-room.png", size: 25, alt: "nav-logo", class: "app-logo btn-sm btn btn-float shadow-none" %>
+            <div class="ml-2 d-sm-none d-md-block">
+                <h5 class="m-0">
+                    Mossonger
+                </h5>
+            </div>
             <% end %>
         </a>
+        <% if @conversation %>
         <div class="">
             <ul class="navbar-nav ml-auto justify-content-around">
                 <li class="nav-item">
@@ -16,10 +31,11 @@
                     <%= link_to material_icon.videocam, "#start-a-group-video-chat", data: {toggle: "tooltip"}, title: "Start a group video chat", class: "btn-sm btn btn-float text-info shadow-none" %>
                 </li>
                 <li class="nav-item">
-                    <button type="button" data-target="#chat-informations" data-toggle="collapse" class="btn-sm btn btn-float text-info shadow-none"><i class="material-icons">info</i></button>
+                    <button type="button" data-target="#chat-informations" data-toggle="modal" class="btn-sm btn btn-float text-info shadow-none"><i class="material-icons">info</i></button>
                 </li>
             </ul>
         </div>
+        <% end %>
     </div>
 </nav>
 <%# render 'layouts/offline/flashes' %>

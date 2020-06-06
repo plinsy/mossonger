@@ -9,3 +9,11 @@ $danger-color: #f44336;
 	color: $danger-color;
     transform: rotate(45deg);
 }
+
+.message.removed {
+	.content {
+		border: 1px solid !important;
+		background-color: white !important;
+		font-style: italic;
+	}
+}

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/index'
   default_url_options host: "127.0.0.1:3000"
   resources :readings
   resources :messages, only: %i(create)
@@ -23,8 +24,9 @@ Rails.application.routes.draw do
   end
   get '/settings', to: 'chat_settings#edit', as: 'settings'
   resources :chat_settings
-  resources :chats, only: %[index]
+  resources :chats, only: %i(index)
   resources :friendships
+  resources :users, only: %i(index)
   devise_for :users, controllers: {
     sessions: "users/sessions",
     registrations: "users/registrations",

@@ -1,7 +1,7 @@
 <div class="dropdown-menu dropdown-menu-left">
     <%= link_to "Settings", settings_path(@chat_setting), remote: true, class: "dropdown-item" %>
     <div class="dropdown-divider"></div>
-    <%= link_to "Active Contacts", "#active-contacts", class: "dropdown-item" %>
+    <%= link_to "Active Contacts", users_path, remote: true, class: "dropdown-item" %>
     <% if @conversation %>
     <%= link_to "Message Requests", conversation_invitations_path(@conversation), remote: true, class: "dropdown-item" %>
     <% end %>

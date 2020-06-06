@@ -1,7 +1,6 @@
 // Place all the styles related to the conversations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-
 .chat-body {
     height: calc(92vh - 47.98px);
 }
@@ -16,7 +15,30 @@
 }
 
 @media (max-width: 767px) {
-	#messages {
-		height: calc(100vh - 104.86px);
-	}
+
+    #messages{
+        height: calc(100vh - 104.86px);
+    }
+}
+
+.conversation {
+    .message-content {
+        max-height: 15px;
+        overflow: hidden;
+        width: auto;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+    }
+}
+
+.conversation.unread {
+    * {
+        font-weight: 600;
+    }
+}
+
+.conversations {
+    nav * {
+        line-height: initial;
+    }
 }

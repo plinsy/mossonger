@@ -10,164 +10,178 @@
                 <%# react_component('MessageForm', {authenticity_token: authenticity_token, url: conversation_messages_path(@conversation)}) %>
                 <%= render 'messages/form' %>
             </div>
-        </div>  
-        <div id="chat-informations" class="col-6 col-sm-6 col-md-6 col-lg-4 px-0 border-left border-light scroll-y collapse">
-            <div class="">
-                <div class="navdrawer-header">
-                    <%= render 'conversations/logo/edit', conversation: @conversation %>
-                </div>
-                <ul class="navdrawer-nav accordion md-accordion px-0" id="options-list" role="tablist" aria-multiselectable="true">
-                    <li class="nav-item">
-                        <div class="card-header" role="tab" id="headingTwo1">
-                            <a class="collapsed" data-toggle="collapse" data-parent="#options-list" href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
-                                <h5 class="mb-0 d-flex justify-content-between">
-                                    <span>OPTIONS</span> <i class="material-icons">expand_more</i>
-                                </h5>
-                            </a>
+        </div>
+        <div id="chat-informations" class="col-12 col-sm-12 col-md-6 col-lg-4 px-0 ml-auto modal w-100-vw-sm w-50-vw-md w-25-vw-lg">
+            <div class="modal-dialog modal-dialog-right modal-dialog-scrollable m-0 w-100 h-100">
+                <div class="modal-content h-100 bg-transparent">
+                    <div class="modal-header text-right justify-content-end py-2 px-1 px-sm-1 px-md-3 sticky-top bg-light">
+                        <button type="button" data-dismiss="modal" class="btn-float btn-light btn-sm"><i class="material-icons">close</i></button>
+                    </div>
+                    <div class="modal-body bg-white p-0 scroll-y">
+                        <div class="navdrawer-header mb-0">
+                            <% if @conversation.is_in_group? %>
+                            <%= render 'conversations/logo/edit', conversation: @conversation %>
+                            <% else %>
+                            <%= render 'conversations/logo/show', conversation: @conversation %>
+                            <% end %>
                         </div>
-                        <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1" data-parent="#options-list">
-                            <ul class="navdrawer-nav">
+                        <div class="navdrawer-body bg-white px-0">
+                            <ul class="navdrawer-nav accordion md-accordion px-0 my-0 bg-white" id="options-list" role="tablist" aria-multiselectable="true">
                                 <li class="nav-item">
-                                    <%= link_to "#search-in-conversation", class: "nav-link d-flex justify-content-between" do %>
-                                    <span>Search in Conversation</span>
-                                    <span class="material-icons">search</span>
-                                    <% end %>
-                                </li>
-                                <li class="nav-item">
-                                    <%= link_to "#edit-nick-names", class: "nav-link d-flex justify-content-between" do %>
-                                    <span>Edit Nicknames</span>
-                                    <span class="material-icons">edit</span>
-                                    <% end %>
-                                </li>
-                                <li class="nav-item">
-                                    <%= link_to "#change-theme", class: "nav-link d-flex justify-content-between" do %>
-                                    <span>Change Theme</span>
-                                    <span class="material-icons text-info">album</span>
-                                    <% end %>
-                                </li>
-                                <li class="nav-item">
-                                    <%= link_to "#change-emoji", class: "nav-link d-flex justify-content-between" do %>
-                                    <span>Change Emoji</span>
-                                    <span class="material-icons text-warning">sentiment_very_satisfied</span>
-                                    <% end %>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="card-header" role="tab" id="headingTwo2">
-                            <a class="collapsed" data-toggle="collapse" data-parent="#options-list" href="#collapseTwo21" aria-expanded="false" aria-controls="collapseTwo21">
-                                <h5 class="mb-0 d-flex justify-content-between">
-                                    <span>PEOPLE</span> <i class="material-icons">expand_more</i>
-                                </h5>
-                            </a>
-                        </div>
-                        <div id="collapseTwo21" class="collapse" role="tabpanel" aria-labelledby="headingTwo21" data-parent="#options-list">
-                            <ul class="navdrawer-nav">
-                                <li class="list-group-item border-0 shadow-none br-0 px-0 py-0">
-                                    <button type="button" class="btn btn-light shadow-none w-100">
-                                        <i class="material-icons">add</i>
-                                        <span>Add People</span>
-                                    </button>
-                                </li>
-                                <%= render @users %>
-                            </ul>
-                        </div>
-                    </li>
-                    </li>
-                    <li class="nav-item">
-                        <div class="card-header" role="tab" id="headingThree31">
-                            <a class="collapsed" data-toggle="collapse" data-parent="#options-list" href="#collapseThree31" aria-expanded="false" aria-controls="collapseThree31">
-                                <h5 class="mb-0 d-flex justify-content-between">
-                                    <span>PRIVACY & SUPPORT</span> <i class="material-icons">expand_more</i>
-                                </h5>
-                            </a>
-                        </div>
-                        <div id="collapseThree31" class="collapse" role="tabpanel" aria-labelledby="headingThree31" data-parent="#options-list">
-                            <ul class="navdrawer-nav">
-                                <li class="nav-item">
-                                    <%= link_to "#notifications", class: "nav-link d-flex justify-content-between" do %>
-                                    <span>Notifications</span>
-                                    <span class="material-icons">notifications</span>
-                                    <% end %>
-                                </li>
-                                <li class="nav-item">
-                                    <%= link_to "#ignore-messages", class: "nav-link d-flex justify-content-between" do %>
-                                    <span>Ignore Messages</span>
-                                    <span class="material-icons text-info">speaker_notes_off</span>
-                                    <% end %>
-                                </li>
-                                <li class="nav-item">
-                                    <%= link_to "#something-is-wrong", class: "nav-link d-flex justify-content-between" do %>
-                                    <div class="">
-                                        <div class="w-100">
-                                            Something's wrong
-                                        </div>
-                                        <small class="w-100">Give feedback and report conversation</small>
+                                    <div class="card-header" role="tab" id="headingTwo1">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#options-list" href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+                                            <h5 class="mb-0 d-flex justify-content-between">
+                                                <span>OPTIONS</span> <i class="material-icons">expand_more</i>
+                                            </h5>
+                                        </a>
                                     </div>
-                                    <span class="material-icons text-warning">warning</span>
-                                    <% end %>
+                                    <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1" data-parent="#options-list">
+                                        <ul class="navdrawer-nav my-0">
+                                            <li class="nav-item">
+                                                <%= link_to "#search-in-conversation", class: "nav-link d-flex justify-content-between" do %>
+                                                <span>Search in Conversation</span>
+                                                <span class="material-icons">search</span>
+                                                <% end %>
+                                            </li>
+                                            <li class="nav-item">
+                                                <%= link_to "#edit-nick-names", class: "nav-link d-flex justify-content-between" do %>
+                                                <span>Edit Nicknames</span>
+                                                <span class="material-icons">edit</span>
+                                                <% end %>
+                                            </li>
+                                            <li class="nav-item">
+                                                <%= link_to "#change-theme", class: "nav-link d-flex justify-content-between" do %>
+                                                <span>Change Theme</span>
+                                                <span class="material-icons text-info">album</span>
+                                                <% end %>
+                                            </li>
+                                            <li class="nav-item">
+                                                <%= link_to "#change-emoji", class: "nav-link d-flex justify-content-between" do %>
+                                                <span>Change Emoji</span>
+                                                <span class="material-icons text-warning">sentiment_very_satisfied</span>
+                                                <% end %>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="card-header" role="tab" id="headingTwo2">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#options-list" href="#collapseTwo21" aria-expanded="false" aria-controls="collapseTwo21">
+                                            <h5 class="mb-0 d-flex justify-content-between">
+                                                <span>PEOPLE</span> <i class="material-icons">expand_more</i>
+                                            </h5>
+                                        </a>
+                                    </div>
+                                    <div id="collapseTwo21" class="collapse" role="tabpanel" aria-labelledby="headingTwo21" data-parent="#options-list">
+                                        <ul class="navdrawer-nav my-0">
+                                            <li class="list-group-item border-0 shadow-none br-0 px-0 py-0">
+                                                <button type="button" class="btn btn-light shadow-none w-100">
+                                                    <i class="material-icons">add</i>
+                                                    <span>Add People</span>
+                                                </button>
+                                            </li>
+                                            <%= render @users %>
+                                        </ul>
+                                    </div>
+                                </li>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="card-header" role="tab" id="headingThree31">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#options-list" href="#collapseThree31" aria-expanded="false" aria-controls="collapseThree31">
+                                            <h5 class="mb-0 d-flex justify-content-between">
+                                                <span>PRIVACY & SUPPORT</span> <i class="material-icons">expand_more</i>
+                                            </h5>
+                                        </a>
+                                    </div>
+                                    <div id="collapseThree31" class="collapse" role="tabpanel" aria-labelledby="headingThree31" data-parent="#options-list">
+                                        <ul class="navdrawer-nav my-0">
+                                            <li class="nav-item">
+                                                <%= link_to "#notifications", class: "nav-link d-flex justify-content-between" do %>
+                                                <span>Notifications</span>
+                                                <span class="material-icons">notifications</span>
+                                                <% end %>
+                                            </li>
+                                            <li class="nav-item">
+                                                <%= link_to "#ignore-messages", class: "nav-link d-flex justify-content-between" do %>
+                                                <span>Ignore Messages</span>
+                                                <span class="material-icons text-info">speaker_notes_off</span>
+                                                <% end %>
+                                            </li>
+                                            <li class="nav-item">
+                                                <%= link_to "#something-is-wrong", class: "nav-link d-flex justify-content-between" do %>
+                                                <div class="">
+                                                    <div class="w-100">
+                                                        Something's wrong
+                                                    </div>
+                                                    <small class="w-100">Give feedback and report conversation</small>
+                                                </div>
+                                                <span class="material-icons text-warning">warning</span>
+                                                <% end %>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="card-header" role="tab" id="shared-files">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#options-list" href="#collapse-shared-files" aria-expanded="false" aria-controls="collapse-shared-files">
+                                            <h5 class="mb-0 d-flex justify-content-between">
+                                                <span>SHARED-FILES</span> <i class="material-icons">expand_more</i>
+                                            </h5>
+                                        </a>
+                                    </div>
+                                    <div id="collapse-shared-files" class="collapse" role="tabpanel" aria-labelledby="shared-files" data-parent="#options-list">
+                                        <div class="card-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+                                            wolf
+                                            moon
+                                            officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                                            Brunch
+                                            3
+                                            wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                                            shoreditch
+                                            et.
+                                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                            Ad
+                                            vegan
+                                            excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                                            nesciunt
+                                            you probably haven't heard of them accusamus labore sustainable VHS.
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="card-header" role="tab" id="shared-photos">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#options-list" href="#collapse-shared-photos" aria-expanded="false" aria-controls="collapse-shared-photos">
+                                            <h5 class="mb-0 d-flex justify-content-between">
+                                                <span>SHARED-PHOTOS</span> <i class="material-icons">expand_more</i>
+                                            </h5>
+                                        </a>
+                                    </div>
+                                    <div id="collapse-shared-photos" class="collapse" role="tabpanel" aria-labelledby="shared-photos" data-parent="#options-list">
+                                        <div class="card-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+                                            wolf
+                                            moon
+                                            officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                                            Brunch
+                                            3
+                                            wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                                            shoreditch
+                                            et.
+                                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                            Ad
+                                            vegan
+                                            excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                                            nesciunt
+                                            you probably haven't heard of them accusamus labore sustainable VHS.
+                                        </div>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="card-header" role="tab" id="shared-files">
-                            <a class="collapsed" data-toggle="collapse" data-parent="#options-list" href="#collapse-shared-files" aria-expanded="false" aria-controls="collapse-shared-files">
-                                <h5 class="mb-0 d-flex justify-content-between">
-                                    <span>SHARED-FILES</span> <i class="material-icons">expand_more</i>
-                                </h5>
-                            </a>
-                        </div>
-                        <div id="collapse-shared-files" class="collapse" role="tabpanel" aria-labelledby="shared-files" data-parent="#options-list">
-                            <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
-                                wolf
-                                moon
-                                officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                Brunch
-                                3
-                                wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
-                                shoreditch
-                                et.
-                                Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                Ad
-                                vegan
-                                excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                                nesciunt
-                                you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="card-header" role="tab" id="shared-photos">
-                            <a class="collapsed" data-toggle="collapse" data-parent="#options-list" href="#collapse-shared-photos" aria-expanded="false" aria-controls="collapse-shared-photos">
-                                <h5 class="mb-0 d-flex justify-content-between">
-                                    <span>SHARED-PHOTOS</span> <i class="material-icons">expand_more</i>
-                                </h5>
-                            </a>
-                        </div>
-                        <div id="collapse-shared-photos" class="collapse" role="tabpanel" aria-labelledby="shared-photos" data-parent="#options-list">
-                            <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
-                                wolf
-                                moon
-                                officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                Brunch
-                                3
-                                wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
-                                shoreditch
-                                et.
-                                Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                Ad
-                                vegan
-                                excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                                nesciunt
-                                you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                    </div>
+                    <div class="modal-footer py-4 bg-light"></div>
+                </div>
             </div>
         </div>
     </div>

@@ -108,4 +108,8 @@ class Conversation < ApplicationRecord
   def alien_from(user)
     self.aliens.where(space: user.space)
   end
+
+  def read_from(user)
+    user.read_conversation?(self) ? 'read' : 'unread'
+  end
 end

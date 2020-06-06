@@ -5,7 +5,7 @@
             <div class="w-100 align-items-center input-group bg-transparent">
                 <%= f.hidden_field :target, value: "#conversations_q" %>
                 <%= f.label :q, "To:", class: "input-group-prepend h6 m-0 text-muted mr-1" %>
-                <%= f.text_field :q, type: :search, autofocus: true, data: {target: "#msg-search-result"}, class: "col-11 border-0", placeholder: "Type the name of a person or group" %>
+                <%= f.text_field :q, type: :search, autofocus: true, data: {target: "#msg-search-result"}, class: "col col-sm-11 col-md-11 border-0", placeholder: "Type the name of a person or group" %>
                 <%= f.submit "Submit", :disable_with => 'Submiting...', id: "search-conversation-btn", class: "d-none collapse" %>
             </div>
             <% end %>

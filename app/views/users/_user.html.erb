@@ -2,7 +2,7 @@
     <%= link_to user.discussion_with(current_user), class: "" do %>
     <div class="d-flex justify-content-between align-items-center">
         <div class="media justify-content-between align-items-center">
-            <%= image_tag user.avatar, size: 25, class: "h-100 rounded-circle" %>
+            <%= image_tag user.avatar, size: 35, class: "h-100 rounded-circle" %>
             <div class="media-body">
                 <p class="m-0 text-dark">
                     <%= user.name %>
@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="dropdown">
-            <% if @conversation.admin == user %>
+            <% if @conversation && @conversation.admin == user %>
             <small class="less">Admin</small>
             <% end %>
             <%= link_to material_icon.more_horiz, '#more', data: {toggle: 'dropdown'}, class: 'more' %>

@@ -11,12 +11,14 @@ consumer.subscriptions.create("ConversationChannel", {
 
     received(data) {
         if ($('body').data('c_id') == data['c_id']) {
-            var $messages = $("#messages");
+            var $messages = $("#messages"),
+                $conversation = $('#conversation-'+data['c_id']);
             if ($('body').data('profile') == data['sender_id']) {
                 $messages.prepend(data['message_sender_view']);
             } else {
                 $messages.prepend(data['message_guests_view']);
             }
+            $conversation.replaceWith(data['c_view']);
             // $messages.animate({ scrollTop: 999999999 }, 'fast', function() {});
         }
         // Called when there's incoming data on the websocket for this channel
@@ -65,16 +67,26 @@ $(document).on('turbolinks:load', function() {
     });
 
     // message content
-    $('.message .content').on('dblclick click', function(e) {
+    $('.message .content').on('mousedown', function(e) {
+        var href = $(this).attr('href'),
+            $href = $(href);
+        $href.toggleClass('show');
+    });
+    $('.message .content').on('dblclick', function(e) {
         e.preventDefault();
         var target = $(this).data('target'),
             $target = $(target);
         $target.modal('show');
     });
-    $('.message .content').mouseout(function(event) {
+    $('.message .content').hover(function() {
+        
+    }, function() {
         var target = $(this).data('target'),
-            $target = $(target);
+            href = $(this).attr('href'),
+            $target = $(target),
+            $href = $(href);
         $target.removeClass('show');
+        $href.removeClass('show');
     });
 
     // conversations search

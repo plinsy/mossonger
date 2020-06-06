@@ -2,9 +2,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :confirmable, :lockable, :timeoutable, :trackable
-  
+    :recoverable, :rememberable, :validatable,
+    :confirmable, :lockable, :timeoutable, :trackable
+
   validates_presence_of :first_name, :last_name, :phone_number
   validates_uniqueness_of :phone_number
 
@@ -29,11 +29,11 @@ class User < ApplicationRecord
   has_many :condemneds, through: :blacklist
 
   has_many :conversations, foreign_key: :admin_id, dependent: :destroy
-    has_many :invitations, through: :conversations
-    has_many :guests, through: :conversations
+  has_many :invitations, through: :conversations
+  has_many :guests, through: :conversations
 
   has_many :received_invitations, class_name: "Invitation", foreign_key: :guest_id, dependent: :destroy
-    has_many :host_conversations, class_name: "Conversation", through: :received_invitations, source: :conversation
+  has_many :host_conversations, class_name: "Conversation", through: :received_invitations, source: :conversation
   def pending_conversations
     self.received_invitations.map { |i| i.conversation }.select { |c| c.not_available }
   end
@@ -50,11 +50,11 @@ class User < ApplicationRecord
     self.avatar.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'avatars', 'default.png')), filename: 'default.png', content_type: 'image/png')
 
     # make some friends
-  	User.all.each_with_index do |u, n|
-  		break if n > 50
-  		f = Friendship.new(sender: self, friend: u)
-  		f.save
-  	end
+    User.all.each_with_index do |u, n|
+      break if n > 50
+      f = Friendship.new(sender: self, friend: u)
+      f.save
+    end
 
     # init his chat settings
     ChatSetting.create(user: self)
@@ -125,5 +125,35 @@ class User < ApplicationRecord
     c = self.conversations
     c += self.host_conversations
     return c
+  end
+
+  def read_conversation(conversation)
+    return true if self.read_conversation?(conversation)
+    conversation.messages.select { |m| m.persisted? }.each do |message|
+      next if self.read?(message)
+      self.readings.create(conversation: message.conversation, message: message)
+    end
+  end
+
+  def read(message)
+    self.readings.create(conversation: message.conversation, message: message)
+  end
+
+  def read_conversation?(conversation)
+    conversation.messages.each do |message|
+      return false if !self.read?(message)
+    end
+    return true
+  end
+
+  def read?(message)
+    self.readings.where(message: message).any?
+  end
+
+  def self.search(users_params)
+    result = [select { |u| u }]
+    onlines = where("is_online")
+    result.push(onlines)
+    return result
   end
 end
