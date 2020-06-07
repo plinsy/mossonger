@@ -29,9 +29,7 @@ function loadAll() {
 function toggleMainMenu() {
     $('#main-menu-toggler').on('click', function(event) {
         event.preventDefault();
-        var chevron = $(this).find('.material-icons').html(),
-            oposite_chevron = (chevron == 'chevron_right' ? 'chevron_left' : 'chevron_right');
-        $(this).find('.material-icons').html(oposite_chevron);
+        $(this).find('.material-icons').toggleClass('active');
         var $target = $($(this).data('target'));
         $target.fadeToggle('fast', function() {
         });
