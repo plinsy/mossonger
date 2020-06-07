@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require turbolinks
 //= require jquery
 //= require popper
 //= require bootstrap
@@ -86,7 +85,8 @@ function loadPlugins() {
 
 	// .add-cancel-icons
     $('.add-cancel-icons').click(function(event) {
-        /* Act on the event */
+        event.preventDefault();
+        $($(this).attr('href')).fadeToggle('fast', function() {});
         $(this).toggleClass('active');
     });
 

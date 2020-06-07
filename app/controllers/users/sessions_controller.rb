@@ -33,7 +33,7 @@ class Users::SessionsController < Devise::SessionsController
         render :new
       end
     else
-      flash[:danger] = "Email not found"
+      flash[:danger] = "Email or phone number not found"
       render :new
     end
   end

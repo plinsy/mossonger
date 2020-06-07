@@ -30,9 +30,3 @@ require('./jquery-nicescroll.min.js')
 var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
-
-$(document).on('ready turbolinks:load', function() {
-    // $('[data-toggle="tooltip"]').tooltip({
-    //     container: "body"
-    // });
-});
