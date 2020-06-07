@@ -51,42 +51,42 @@ function animateMessageContent() {
 
 function loadNiceScroll(data) {
     var $chat_body = $('.chat-body:first');
-	if (data['scroll']) {
-	    $chat_body.scrollTop($chat_body.get(0).scrollHeight, -1).niceScroll({
-	        cursorcolor: "#424242", // change cursor color in hex
-	        cursoropacitymin: 0, // change opacity when cursor is inactive (scrollabar "hidden" state), range from 1 to 0
-	        cursoropacitymax: 1, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
-	        cursorwidth: "5px", // cursor width in pixel (you can also write "5px")
-	        cursorborder: "1px solid #fff", // css definition for cursor border
-	        cursorborderradius: "5px", // border radius in pixel for cursor
-	        scrollspeed: 100, // scrolling speed
-	        mousescrollstep: 100 // scrolling speed with mouse wheel (pixel)
-	    }).resize();
-	} else {
-		$chat_body.niceScroll({
-	        cursorcolor: "#424242", // change cursor color in hex
-	        cursoropacitymin: 0, // change opacity when cursor is inactive (scrollabar "hidden" state), range from 1 to 0
-	        cursoropacitymax: 1, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
-	        cursorwidth: "5px", // cursor width in pixel (you can also write "5px")
-	        cursorborder: "1px solid #fff", // css definition for cursor border
-	        cursorborderradius: "5px", // border radius in pixel for cursor
-	        scrollspeed: 100, // scrolling speed
-	        mousescrollstep: 100 // scrolling speed with mouse wheel (pixel)
-	    }).resize();
-	}
+    if (data['scroll']) {
+        $chat_body.scrollTop($chat_body.get(0).scrollHeight, -1).niceScroll({
+            cursorcolor: "#424242", // change cursor color in hex
+            cursoropacitymin: 0, // change opacity when cursor is inactive (scrollabar "hidden" state), range from 1 to 0
+            cursoropacitymax: 1, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
+            cursorwidth: "5px", // cursor width in pixel (you can also write "5px")
+            cursorborder: "1px solid #fff", // css definition for cursor border
+            cursorborderradius: "5px", // border radius in pixel for cursor
+            scrollspeed: 100, // scrolling speed
+            mousescrollstep: 100 // scrolling speed with mouse wheel (pixel)
+        }).resize();
+    } else {
+        $chat_body.niceScroll({
+            cursorcolor: "#424242", // change cursor color in hex
+            cursoropacitymin: 0, // change opacity when cursor is inactive (scrollabar "hidden" state), range from 1 to 0
+            cursoropacitymax: 1, // change opacity when cursor is active (scrollabar "visible" state), range from 1 to 0
+            cursorwidth: "5px", // cursor width in pixel (you can also write "5px")
+            cursorborder: "1px solid #fff", // css definition for cursor border
+            cursorborderradius: "5px", // border radius in pixel for cursor
+            scrollspeed: 100, // scrolling speed
+            mousescrollstep: 100 // scrolling speed with mouse wheel (pixel)
+        }).resize();
+    }
 }
 
 function loadPlugins() {
-	// remove
-	$("[data-toggle='remove']").click(function(event) {
-		event.preventDefault();
-		var $target = $($(this).data('target'));
-		$target.fadeOut('slow', function() {
-			$(this).remove();
-		});
-	});
+    // remove
+    $("[data-toggle='remove']").click(function(event) {
+        event.preventDefault();
+        var $target = $($(this).data('target'));
+        $target.fadeOut('slow', function() {
+            $(this).remove();
+        });
+    });
 
-	// .add-cancel-icons
+    // .add-cancel-icons
     $('.add-cancel-icons').click(function(event) {
         event.preventDefault();
         $($(this).attr('href')).fadeToggle('fast', function() {});
@@ -122,4 +122,13 @@ function loadPlugins() {
             }, 100);
         }
     });
+}
+
+function removeCurrentModals() {
+    $('.modal').fadeOut('fast', function() {
+    });
+    $('.modal-backdrop.show').fadeOut('fast', function() {
+        $(this).remove();
+    });
+    $("[data-toggle='remove']").click();
 }

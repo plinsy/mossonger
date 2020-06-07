@@ -1,3 +1,6 @@
+$.getScript('/assets/application', function(data, textStatus) {
+	removeCurrentModals()
+});
 $('#new-message-form-section').replaceWith(`<%= render 'messages/form', message: @message %>`);
 $('#message_content').focus();
 $.getScript('/assets/application.js', function(data, textStatus) {

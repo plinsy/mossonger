@@ -24,6 +24,7 @@ consumer.subscriptions.create("ConversationChannel", {
                 animateMessageContent();
                 loadNiceScroll({ scroll: true });
                 loadPlugins();
+                removeCurrentModals();
             });
             // $messages.animate({ scrollTop: 999999999 }, 'fast', function() {});
         }
@@ -91,10 +92,11 @@ $(document).on('turbolinks:load', function() {
         e.preventDefault();
     });
 
-    $.getScript('/assets/application.js', function() {
+    $.getScript('/assets/application', function() {
         loadBootstrap();
         animateMessageContent();
         loadNiceScroll({ scroll: true });
         loadPlugins();
+        removeCurrentModals();
     });
 });

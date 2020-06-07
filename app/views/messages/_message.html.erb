@@ -43,11 +43,14 @@
                                 </li>
                                 <li class="list-inline-item">
                                     <%= link_to '.copy', class: "text-info md-36" do %>
-                                    <i class="fa fa-copy fa-2x"></i>
+                                    <i class="fa fa-copy material-icons md-18"></i>
                                     <% end %>
                                 </li>
                                 <li class="list-inline-item">
                                     <%= link_to material_icon.insert_emoticon, '.react', class: "text-warning md-36" %>
+                                </li>
+                                <li class="list-inline-item">
+                                    <%= link_to material_icon.reply, conversation_reply_path(message.conversation, 'message', message), remote: true, class: "text-dark md-36" %>
                                 </li>
                                 <li class="list-inline-item">
                                     <%= link_to material_icon.forward, '.forward', class: "text-success md-36" %>

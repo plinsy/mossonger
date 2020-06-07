@@ -1,9 +1,6 @@
 toastr['success']('<%= @dropable_type.capitalize %> #<%= @dropable_id %> archived');
-$('.modal').fadeOut('fast', function() {
-	$(this).remove();
-});
-$('.modal-backdrop.show').fadeOut('fast', function() {
-	$(this).remove();
+$.getScript('/assets/application', function(data, textStatus) {
+	removeCurrentModals()
 });
 setTimeout(function(){
 	$("#<%= @dropable_type %>-<%= @dropable_id %>").replaceWith(`<%= render @dropable %>`);
