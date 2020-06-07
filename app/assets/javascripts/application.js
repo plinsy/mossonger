@@ -27,12 +27,20 @@ function loadAll() {
 }
 
 function toggleMainMenu() {
-    $('#main-menu-toggler').on('click', function(event) {
+    var $mainMenuToggler = $('#main-menu-toggler'),
+        $target = $($mainMenuToggler.data('target'));
+    $mainMenuToggler.on('click', function(event) {
         event.preventDefault();
         $(this).find('.material-icons').toggleClass('active');
-        var $target = $($(this).data('target'));
-        $target.fadeToggle('fast', function() {
-        });
+        $target.fadeToggle('fast', function() {});
+    });
+
+    $mainMenuToggler.parent('.input-group').hover(function() {
+        /* Stuff to do when the mouse enters the element */
+    }, function() {
+        $mainMenuToggler.find('.material-icons').removeClass('active');
+        $target.fadeOut('fast', function() {});
+        /* Stuff to do when the mouse leaves the element */
     });
 }
 

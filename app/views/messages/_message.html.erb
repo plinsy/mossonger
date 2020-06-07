@@ -3,7 +3,7 @@
     <%= I18n.l(message.created_at, format: :long) %>
 </aside>
 <% end %>
-<aside id="message-<%= message.id %>" class="message w-auto my-1 <%= message.read_from(current_user) %> <%= message.dropped? ? 'removed' : '' %>">
+<aside id="message-<%= message.id %>" class="message w-auto mb-1 <%= message.read_from(current_user) %> <%= message.dropped? ? 'removed' : '' %>">
     <small class="text-muted d-block ml-5 <%= message.hide_for(current_user) %>">
         <%= message.sender.nickname_at(message.conversation).name %></small>
     <div class="d-flex <%= message.position_for(current_user) %>">
