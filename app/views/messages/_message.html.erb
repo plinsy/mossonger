@@ -1,3 +1,8 @@
+<% if message.date_changed? %>
+<aside class="message w-100 my-1 text-center">
+    <%= I18n.l(message.created_at, format: :long) %>
+</aside>
+<% end %>
 <aside id="message-<%= message.id %>" class="message w-auto my-1 <%= message.read_from(current_user) %> <%= message.dropped? ? 'removed' : '' %>">
     <small class="text-muted d-block ml-5 <%= message.hide_for(current_user) %>">
         <%= message.sender.nickname_at(message.conversation).name %></small>
@@ -9,12 +14,12 @@
                 <span data-toggle="tooltip" data-html="true" title="<div>Sent: <%= message.created_at.strftime('%H:%M %P') %></div><div>Removed: <%= message.dropped_at.strftime('%H:%M %P') %></div>">
                     <%= (message.droppers.include?(current_user) ? "You" : message.nickname.name) + " removed a message" %></span>
                 <% else %>
-                    <% if !message.messageable.nil? %>
-                    <blockquote class="blockquote-footer border-light border-left">
-                        <%= message.messageable.content %>
-                    </blockquote>
-                    <% end %>
-                    <%= message.content %>
+                <% if !message.messageable.nil? %>
+                <blockquote class="blockquote-footer border-light border-left">
+                    <%= message.messageable.content %>
+                </blockquote>
+                <% end %>
+                <%= message.content %>
                 <% end %>
             </button>
             <small id="message-readers-<%= message.id %>" class="text-muted fade d-block">

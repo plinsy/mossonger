@@ -73,6 +73,19 @@ class Message < ApplicationRecord
   def nickname
     self.sender.nickname_at(self.conversation)
   end
+
+  def siblings
+    self.conversation.messages
+  end
+
+  def previous
+    p_id = self.siblings.index(self) - 1
+    p_id >= 0 ? self.siblings[p_id] : false
+  end
+
+  def date_changed?
+    self.previous && self.previous.created_at.day != self.created_at.day
+  end
   
   private
   def render_sender_message(message)
