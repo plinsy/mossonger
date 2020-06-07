@@ -83,10 +83,11 @@ class Conversation < ApplicationRecord
   end
 
   def self.availables
-    select { |c| c.is_a_monolog? || (c.is_a_dialog? && c.invitations.first.is_accepted) || c.is_in_group? }
+    select { |c| !c.dropped? && (c.is_a_monolog? || (c.is_a_dialog? && c.invitations.first.is_accepted) || c.is_in_group?) }
   end
 
   def not_available
+    return true if self.dropped?
     self.invitations.each do |invitation|
       return true if invitation.is_not_accepted
     end

@@ -5,7 +5,7 @@
     <% if @conversation %>
     <%= link_to "Message Requests", conversation_invitations_path(@conversation), remote: true, class: "dropdown-item" %>
     <% end %>
-    <%= link_to "Hidden Chats", "#hidden-chats", class: "dropdown-item" %>
+    <%= link_to "Hidden Chats", dropbox_path(current_user.dropbox), remote: true, class: "dropdown-item" %>
     <%= link_to "Unread Chats", "#unread-chats", class: "dropdown-item" %>
     <div class="dropdown-divider"></div>
     <%= link_to "About", "#about", class: "dropdown-item" %>

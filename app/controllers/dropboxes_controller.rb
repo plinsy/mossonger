@@ -5,12 +5,18 @@ class DropboxesController < ApplicationController
   # GET /dropboxes
   # GET /dropboxes.json
   def index
-    @dropboxes = Dropbox.all
   end
 
   # GET /dropboxes/1
   # GET /dropboxes/1.json
   def show
+    @dropbox = current_user.dropbox
+    @trashes = @dropbox.trashes
+    @conversations_trashes = @trashes.where(trashable_type: "Conversation")
+    @dropped_conversations = @conversations_trashes.map { |t| t.trashable }
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /dropboxes/new
@@ -63,8 +69,9 @@ class DropboxesController < ApplicationController
   end
 
   def drop
+    @item = @dropbox.drop(@dropable)
     respond_to do |format|
-      if @dropbox.drop(@dropable)
+      if @item
         format.js {
           render :dropped
         }
@@ -94,6 +101,8 @@ class DropboxesController < ApplicationController
       case @dropable_type
       when 'message'
         @dropable = Message.find(@dropable_id)
+      when 'conversation'
+        @dropable = Conversation.find(@dropable_id)
       end
     end
 end

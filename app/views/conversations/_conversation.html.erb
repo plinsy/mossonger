@@ -42,7 +42,7 @@
                 <div class="dropdown-divider"></div>
                 <%= link_to "Leave Group", "#leave-group", class: "dropdown-item" %>
                 <%= link_to "Hide", "#hide", class: "dropdown-item" %>
-                <%= link_to "Delete", "#delete", class: "dropdown-item" %>
+                <%= link_to "Delete", drop_path('conversation', conversation), remote: true, class: "dropdown-item" %>
                 <div class="dropdown-divider"></div>
                 <%= link_to "Mark as Unread", "#mark-as-unread", class: "dropdown-item" %>
                 <%= link_to "Something's wrong", "#something-is-wrong", class: "dropdown-item" %>

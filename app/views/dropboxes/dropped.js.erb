@@ -1,7 +1,17 @@
 toastr['success']('<%= @dropable_type.capitalize %> #<%= @dropable_id %> archived');
-$.getScript('/assets/application', function(data, textStatus) {
-	removeCurrentModals()
-});
 setTimeout(function(){
-	$("#<%= @dropable_type %>-<%= @dropable_id %>").replaceWith(`<%= render @dropable %>`);
+	switch ("<%= @dropable_type %>") {
+		case "message":
+			$("#<%= @dropable_type %>-<%= @dropable_id %>").replaceWith(`<%= render @dropable, show_options: true %>`);
+			break;
+		default:
+			$("#<%= @dropable_type %>-<%= @dropable_id %>").fadeOut('slow', function() {
+				$(this).remove();	
+			});
+			break;
+	}
 }, 100);
+$.getScript('/assets/application', function(data, textStatus) {
+	removeCurrentModals();
+	loadAll();
+});
