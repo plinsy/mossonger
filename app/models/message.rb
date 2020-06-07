@@ -29,7 +29,7 @@ class Message < ApplicationRecord
       color: self.color_for(user),
       created_at: I18n.l(self.created_at, format: :long),
       message_sender_view: render_message(self, self.sender),
-      message_guests_view: render_message(self, self.conversation.users.select { |u| u != self.sender})
+      message_guests_view: render_message(self, self.conversation.users.select { |u| u != self.sender }.first)
     }
     ActionCable.server.broadcast 'conversation_channel', data
   end
