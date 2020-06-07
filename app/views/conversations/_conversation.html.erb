@@ -9,11 +9,15 @@
                     <%= guest.name %>
                 </p>
                 <% if show_options %>
+                <% if conversation.messages.any? %>
                 <p class="message-content text-muted small m-0">
                     <%= conversation.messages.last.sender.name %>:
                     <%= conversation.messages.last.content %>
                 </p>
-                <small><%= conversation.messages.last.created_at.strftime("%H:%M %P").upcase %></small>
+                <small>
+                    <%= conversation.messages.last.created_at.strftime("%H:%M %P").upcase %></small>
+                <% else %>
+                <% end %>
                 <% end %>
             </div>
         </div>

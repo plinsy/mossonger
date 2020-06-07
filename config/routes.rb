@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/new', to: 'messages#new', as: 'new_message'
   post '/conversations/search', to: 'conversations#search', as: 'conversations_search'
   resources :conversations do
+    get '/reply/:messageable_type/:messageable_id', to: 'messages#reply', as: 'reply'
     delete '/invitations', to: "invitations#destroy_all", as: "destroy_all_invitations"
     resources :invitations
     resources :nicknames

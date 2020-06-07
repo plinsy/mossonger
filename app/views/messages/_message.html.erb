@@ -6,13 +6,21 @@
         <div data-toggle="tooltip" data-placement="bottom" data-container="body" data-trigger="hover" title="" class="mx-1 text-<%= message.direction_for(current_user) %>">
             <button href="#message-readers-<%= message.id %>" data-target="#message-content-menu-<%= message.id %>" class="content bg-<%= message.color_for(current_user) %> p-2 br-25 text-<%= message.direction_for(current_user) %> border-0">
                 <% if message.dropped? %>
-                <span data-toggle="tooltip" data-html="true" title="<div>Sent: <%= message.created_at.strftime('%H:%M %P') %></div><div>Removed: <%= message.dropped_at.strftime('%H:%M %P') %></div>" ><%= (message.droppers.include?(current_user) ? "You" : message.nickname.name) + " removed a message" %></span>
+                <span data-toggle="tooltip" data-html="true" title="<div>Sent: <%= message.created_at.strftime('%H:%M %P') %></div><div>Removed: <%= message.dropped_at.strftime('%H:%M %P') %></div>">
+                    <%= (message.droppers.include?(current_user) ? "You" : message.nickname.name) + " removed a message" %></span>
                 <% else %>
-                <%= message.content %>
+                    <% if !message.messageable.nil? %>
+                    <blockquote class="blockquote-footer border-light border-left">
+                        <%= message.messageable.content %>
+                    </blockquote>
+                    <% end %>
+                    <%= message.content %>
                 <% end %>
             </button>
             <small id="message-readers-<%= message.id %>" class="text-muted fade d-block">
-                <span><%= I18n.l(message.created_at, format: :long) %></span> - <span><%= message.seen_by %></span>
+                <span>
+                    <%= I18n.l(message.created_at, format: :long) %></span> - <span>
+                    <%= message.seen_by %></span>
             </small>
             <% if message.dropped? %>
             <% else %>
@@ -66,7 +74,7 @@
         <% else %>
         <div class="icons <%= message.position_for(current_user) %> d-sm-none d-md-flex">
             <%= link_to material_icon.insert_emoticon, "#react", data: {toggle: "tooltip", placement: "bottom"}, title: "React", class: "btn btn-sm btn-float shadow-none text-warning" %>
-            <%= link_to material_icon.reply, "#reply", data: {toggle: "tooltip", placement: "bottom"}, title: "Reply", class: "btn btn-sm btn-float shadow-none" %>
+            <%= link_to material_icon.reply, conversation_reply_path(message.conversation, 'message', message), remote: true, data: {toggle: "tooltip", placement: "bottom"}, title: "Reply", class: "btn btn-sm btn-float shadow-none" %>
             <%= link_to material_icon.archive, drop_path('message', message), remote: true, title: "Archive", class: "btn btn-sm btn-float shadow-none text-danger" %>
         </div>
         <% end %>

@@ -14,7 +14,7 @@ class ConversationsController < ApplicationController
   def show
     @messages = @conversation.messages.select { |m| m.persisted? }.sort { |a, b| a.created_at }
     @paged_msgs = Kaminari.paginate_array(@messages).page(params[:msg_page]).per(25)
-    @msg_pagy, @msgs = pagy_array(@messages, items: 25, page_param: :msgs_page)
+    @msgs_pagy, @msgs = pagy_array(@messages, items: 25, page_param: :msgs_page)
     @react_messages = @conversation.react_messages_for(current_user)
     @message = @conversation.messages.new
     current_user.read_conversation(@conversation)

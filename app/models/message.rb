@@ -2,6 +2,8 @@ class Message < ApplicationRecord
 	scope :availables, -> { select { |msg| msg.persisted? && !msg.dropped? } }
   belongs_to :sender, class_name: "User"
   belongs_to :conversation
+  belongs_to :messageable, polymorphic: true, optional: true
+  has_many :messages, as: :messageable
   has_many_attached :files, dependent: :destroy
   has_many :readings, dependent: :destroy
     has_many :readers, class_name: "User", through: :readings, source: :user

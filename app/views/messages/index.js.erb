@@ -1,12 +1,12 @@
 $("#messages").prepend(`<%= render @msgs.reverse %>`);
-if (<%= @msg_pagy.next.nil? %>) {
+if (<%= @msgs_pagy.next.nil? %>) {
     $("#more-msgs-link").addClass('disabled');
     $('#more-msgs-link').html('No more messages to fetch');
 } else {
-    $("#more-msgs-link").attr("href", `<%= conversation_messages_path(@conversation, msgs_page: @msg_pagy.next) %>`);
+    $("#more-msgs-link").attr("href", `<%= conversation_messages_path(@conversation, msgs_page: @msgs_pagy.next) %>`);
 }
 $.getScript('/assets/application.js', function() {
     loadTooltip();
     animateMessageContent();
-    loadNiceScroll();
+    loadNiceScroll({scroll: false});
 });

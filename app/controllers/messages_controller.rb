@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     @messages = @conversation.messages.select { |m| m.persisted? }.sort { |a, b| a.created_at }
-    @msg_pagy, @msgs = pagy_array(@messages, items: 25, page_param: :msgs_page, msgs_page: params[:msgs_page])
+    @msgs_pagy, @msgs = pagy_array(@messages, items: 25, page_param: :msgs_page, msgs_page: params[:msgs_page])
   end
 
   # GET /messages/1
@@ -76,6 +76,19 @@ class MessagesController < ApplicationController
     end
   end
 
+  def reply
+    @messageable_type = params[:messageable_type]
+    @messageable_id = params[:messageable_id]
+    @messageable = instance_eval "#{@messageable_type.camelize}.find(#{@messageable_id})"
+    @message = current_user.messages.new(
+      conversation: @messageable.conversation, 
+      messageable: @messageable
+    )
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_message
@@ -84,7 +97,7 @@ class MessagesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def message_params
-    params.require(:message).permit(:content)
+    params.require(:message).permit(:content, :messageable_type, :messageable_id)
   end
 
   def set_conversation

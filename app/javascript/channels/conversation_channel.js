@@ -43,9 +43,11 @@ consumer.subscriptions.create("ConversationChannel", {
 $(document).on('turbolinks:load', function() {
     // $("#messages").niceScroll({cursorcolor:"#00F"});
     var goFS = document.getElementById("goFS");
-    goFS.addEventListener("click", function() {
-        toggleFullScreen();
-    }, false);
+    if (goFS != null) {
+        goFS.addEventListener("click", function() {
+            toggleFullScreen();
+        }, false);
+    }
 
     function toggleFullScreen() {
         var isInFullScreen = document.fullscreenElement && document.fullscreenElement !== null;
@@ -76,23 +78,6 @@ $(document).on('turbolinks:load', function() {
         }
     }
 
-    var $messages = $("#messages"),
-        lastMessage = $messages.find('.message:last');
-    // $messages.animate({ scrollTop: 999999999 }, 1500, function() {});
-    var $newMsgForm = $('#new-message-form'),
-        $submitBtn = $newMsgForm.find('[type="submit"]'),
-        $input = $newMsgForm.find('textarea');
-    $input.keyup(function(event) {
-        if (event.keyCode == 13) {
-            event.preventDefault();
-            $submitBtn.click();
-            setTimeout(function() {
-                $input.val('');
-                $input.focusout();
-            }, 100);
-        }
-    });
-
     // tabs
     $('[data-toggle="linx-tab"]').click(function(event) {
         event.preventDefault();
@@ -106,35 +91,15 @@ $(document).on('turbolinks:load', function() {
         });
     });
 
-    // conversations search
-    $('#conversations_q').keyup(function(event) {
-        var target = $(this).data('target'),
-            $target = $(target);
-
-        if ($target.hasClass('dropdown-menu')) {
-            if (event.target.value == "") {
-                $target.dropdown('hide');
-            } else {
-                $target.dropdown('show');
-            }
-        }
-        $('#search-conversation-btn').click();
-    });
-
     // no right click
     $('body.conversations').on('contextmenu', function(e) {
         e.preventDefault();
     });
 
-    // .add-cancel-icons
-    $('.add-cancel-icons').click(function(event) {
-        /* Act on the event */
-        $(this).toggleClass('active');
-    });
-
     $.getScript('/assets/application.js', function() {
         loadTooltip();
         animateMessageContent();
-        loadNiceScroll();
+        loadNiceScroll({ scroll: true });
+        loadPlugins();
     });
 });

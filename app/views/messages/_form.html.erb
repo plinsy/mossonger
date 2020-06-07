@@ -1,4 +1,4 @@
-<section class="col-12 col-sm-12 col-md-11 col-lg-9 offset-md-1 offset-lg-3 position-fixed px-0 w-100 bottom-0-p left-0-p">
+<section id="new-message-form-section" class="col-12 col-sm-12 col-md-11 col-lg-9 offset-md-1 offset-lg-3 position-fixed px-0 w-100 bottom-0-p left-0-p">
     <div id="add-cancel-icons" class="d-md-none shadow-sm p-3 collapse bg-white">
         <div class="justify-content-between d-flex">
             <%= link_to material_icon.poll, "#create-a-poll-icon", class: "" %>
@@ -10,9 +10,26 @@
             <%= link_to material_icon.insert_photo, "#add-files", class: "" %>
         </div>
     </div>
+    <% if message.messageable %>
+    <div id="messageable-container" class="shadow-sm p-3 bg-white">
+        <div class="justify-content-between d-flex">
+            <div>
+                <span>Replying to </span><strong class="m-0">
+                    <%= message.messageable.sender.name %>
+                </strong>
+                <p class="m-0 text-muted">
+                    <%= message.messageable.content %>
+                </p>
+            </div>
+            <button type="button" data-toggle="remove" data-target="#messageable-container" class="btn btn-float shadow-none"><i class="material-icons">close</i></button>
+        </div>
+    </div>
+    <% end %>
     <div class="card shadow-none border-0 border-top border-light">
         <div class="card-footer pt-1 px-1 pb-0">
-            <%= form_with(model: @message, url: conversation_messages_path(@conversation), html: {id: "new-message-form"}) do |f| %>
+            <%= form_with(model: message, url: conversation_messages_path(@conversation), html: {id: "new-message-form"}) do |f| %>
+            <%= f.hidden_field :messageable_id %>
+            <%= f.hidden_field :messageable_type %>
             <div class="form-inputs">
                 <div class="d-flex justify-content-between align-items-center">
                     <%= link_to material_icon.add_circle, "#add-cancel-icons", data: {first: "add_circle", second: "cancel", toggle: "collapse"}, class: "add-cancel-icons btn-sm d-md-none" %>
@@ -25,7 +42,7 @@
                     <%= link_to material_icon.insert_drive_file, "#choose-a-sticker", class: "btn-sm d-none d-sm-none d-md-block" %>
                     <%= link_to material_icon.insert_photo, "#add-files", class: "btn-sm d-none d-sm-none d-md-block" %>
                     <div class="chip disabled bg-transparent border mb-1 w-100">
-                        <%= f.text_area :content, rows: 1, placeholder: "Type a message, @name...", id: "", class: "input w-100" %>
+                        <%= f.text_area :content, rows: 1, placeholder: "Type a message, @name...", class: "input w-100" %>
                         <%= link_to material_icon.insert_emoticon, "#insert-emoji", class: "" %>
                     </div>
                     <%= link_to material_icon.monetization_on, "#change-emoji", class: "shadow-none btn-sm" %>

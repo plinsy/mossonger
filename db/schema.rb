@@ -123,10 +123,13 @@ ActiveRecord::Schema.define(version: 2020_06_01_104242) do
   create_table "messages", force: :cascade do |t|
     t.bigint "sender_id", null: false
     t.bigint "conversation_id", null: false
+    t.string "messageable_type"
+    t.bigint "messageable_id"
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["messageable_type", "messageable_id"], name: "index_messages_on_messageable_type_and_messageable_id"
     t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
