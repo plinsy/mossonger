@@ -15,6 +15,7 @@
 }
 
 @media (max-width: 767px) {
+
     #side-left,
     #messages,
     .chat-body {
@@ -41,5 +42,26 @@
 .conversations {
     nav * {
         line-height: initial;
+    }
+}
+
+body.dark {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .text-muted {
+        color: white !important;
+    }
+
+    li,
+    li div,
+    li p,
+    li .text-muted,
+    div .text-muted {
+        color: black !important;
     }
 }

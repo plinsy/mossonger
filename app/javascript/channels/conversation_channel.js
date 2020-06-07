@@ -38,42 +38,6 @@ consumer.subscriptions.create("ConversationChannel", {
 
 $(document).on('turbolinks:load', function() {
     // $("#messages").niceScroll({cursorcolor:"#00F"});
-    var goFS = document.getElementById("goFS");
-    if (goFS != null) {
-        goFS.addEventListener("click", function() {
-            toggleFullScreen();
-        }, false);
-    }
-
-    function toggleFullScreen() {
-        var isInFullScreen = document.fullscreenElement && document.fullscreenElement !== null;
-        if (isInFullScreen) {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            } else if (document.mozCancelFullScreen) {
-                document.mozCancelFullScreen();
-            } else if (document.msExitFullscreen) {
-                document.msExitFullscreen();
-            }
-            $('#fullscreen-icon').html('fullscreen');
-        } else {
-            var docElm = document.body; // dark mode
-            // var docElm = document.documentElement;
-            if (docElm.requestFullscreen) {
-                docElm.requestFullscreen();
-            } else if (docElm.mozRequestFullScreen) {
-                docElm.mozRequestFullScreen();
-            } else if (docElm.webkitRequestFullScreen) {
-                docElm.webkitRequestFullScreen();
-            } else if (docElm.msRequestFullscreen) {
-                docElm.msRequestFullscreen();
-            }
-            $('#fullscreen-icon').html('fullscreen_exit');
-        }
-    }
-
     // tabs
     $('[data-toggle="linx-tab"]').click(function(event) {
         event.preventDefault();
@@ -93,6 +57,7 @@ $(document).on('turbolinks:load', function() {
     });
 
     $.getScript('/assets/application', function() {
+        fullscreenAble();
         loadBootstrap();
         animateMessageContent();
         loadNiceScroll({ scroll: true });

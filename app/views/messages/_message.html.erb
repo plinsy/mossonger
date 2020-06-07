@@ -86,7 +86,7 @@
         <% else %>
         <div class="icons <%= message.position_for(current_user) %> d-sm-none d-md-flex">
             <%= link_to material_icon.insert_emoticon, "#react", data: {toggle: "tooltip", placement: "bottom"}, title: "React", class: "btn btn-sm btn-float shadow-none text-warning" %>
-            <%= link_to material_icon.reply, conversation_reply_path(message.conversation, 'message', message), remote: true, data: {toggle: "tooltip", placement: "bottom"}, title: "Reply", class: "btn btn-sm btn-float shadow-none" %>
+            <%= link_to material_icon.reply, conversation_reply_path(message.conversation, 'message', message), remote: true, data: {toggle: "tooltip", placement: "bottom"}, title: "Reply", class: "btn btn-sm btn-float shadow-none text-dark" %>
             <%= link_to material_icon.archive, drop_path('message', message), remote: true, title: "Archive", class: "btn btn-sm btn-float shadow-none text-danger" %>
         </div>
         <% end %>
