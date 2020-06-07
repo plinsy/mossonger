@@ -83,10 +83,30 @@ class Message < ApplicationRecord
     p_id >= 0 ? self.siblings[p_id] : false
   end
 
+  def next
+    n_id = self.siblings.index(self) + 1
+    n_id >= 0 ? self.siblings[n_id] : false
+  end
+
+  def from?(user)
+    self.sender == user
+  end
+
   def date_changed?
     self.previous && self.previous.created_at.day != self.created_at.day
   end
   
+  def borders_for(user)
+    if self.previous && self.previous.from?(self.sender) && self.next && self.next.from?(self.sender)
+      b = "no-br-"+self.direction_for(user)
+    elsif self.previous && self.previous.from?(self.sender)
+      b = "no-br-top"
+    elsif self.next && self.next.from?(self.sender)
+      b = "no-br-bottom"
+    end
+    b
+  end
+
   private
   def render_sender_message(message)
     MessagesController.render(

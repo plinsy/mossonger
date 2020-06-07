@@ -1,1 +1,4 @@
 $('#side-left').html(`<%= render 'users/layouts/nav-left' %>`);
+$.getScript('/assets/application', function(data, textStatus) {
+	loadBootstrap();
+});

@@ -19,17 +19,12 @@ consumer.subscriptions.create("ConversationChannel", {
                 $messages.append(data['message_guests_view']);
             }
             $conversation.replaceWith(data['c_view']);
-            var $chat_body = $('.chat-body:first');
-            $chat_body.scrollTop($chat_body.get(0).scrollHeight, -1).niceScroll({
-                cursorcolor: "#424242",
-                cursoropacitymin: 0,
-                cursoropacitymax: 1,
-                cursorwidth: "5px",
-                cursorborder: "1px solid #fff",
-                cursorborderradius: "5px",
-                scrollspeed: 100,
-                mousescrollstep: 40
-            }).resize();
+            $.getScript('/assets/application.js', function() {
+                loadBootstrap();
+                animateMessageContent();
+                loadNiceScroll({ scroll: true });
+                loadPlugins();
+            });
             // $messages.animate({ scrollTop: 999999999 }, 'fast', function() {});
         }
         // Called when there's incoming data on the websocket for this channel
@@ -97,7 +92,7 @@ $(document).on('turbolinks:load', function() {
     });
 
     $.getScript('/assets/application.js', function() {
-        loadTooltip();
+        loadBootstrap();
         animateMessageContent();
         loadNiceScroll({ scroll: true });
         loadPlugins();

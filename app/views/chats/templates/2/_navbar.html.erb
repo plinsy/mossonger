@@ -7,10 +7,12 @@
                 <h5 class="m-0">
                     <%= current_user.second_in(@conversation).name %>
                 </h5>
+                <% if current_user.second_in(@conversation).last_sign_in_at %>
                 <small class="text-muted">
                     Active
-                    <%= current_user.second_in(@conversation).last_sign_in_at ? time_ago_in_words(current_user.second_in(@conversation).last_sign_in_at) : '-' %>
+                    <%=  time_ago_in_words(current_user.second_in(@conversation).last_sign_in_at) %>
                 </small>
+                <% end %>
             </div>
             <% else %>
             <%= image_tag "logos/default-room.png", size: 25, alt: "nav-logo", class: "app-logo btn-sm btn btn-float shadow-none" %>

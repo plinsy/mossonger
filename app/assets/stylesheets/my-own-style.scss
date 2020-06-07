@@ -208,7 +208,19 @@ a:hover {
     }
 
     .br-#{$i} {
-        border-radius: #{$i}px !important;
+        border-radius: #{$i}px;
+    }
+
+    .br-#{$i}.no-br-right {
+        border-radius: #{$i}px 0px 0px #{$i}px;
+    }
+
+    .br-#{$i}.no-br-top {
+        border-radius: #{$i}px 0px #{$i}px #{$i}px;
+    }
+
+    .br-#{$i}.no-br-bottom {
+        border-radius: #{$i}px #{$i}px 0px #{$i}px;
     }
 
     .top-#{$i}-p {

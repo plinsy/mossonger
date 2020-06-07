@@ -17,8 +17,11 @@
 //= require toastr
 //= require_tree .
 
-function loadTooltip() {
+function loadBootstrap() {
+    // tooltip
     $("[data-toggle='tooltip']").tooltip({ boundary: 'window' });
+    // dropdown
+    $("[data-toggle='dropdown']").dropdown();
 }
 
 function animateMessageContent() {

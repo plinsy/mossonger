@@ -6,7 +6,7 @@ if (<%= @msgs_pagy.next.nil? %>) {
     $("#more-msgs-link").attr("href", `<%= conversation_messages_path(@conversation, msgs_page: @msgs_pagy.next) %>`);
 }
 $.getScript('/assets/application.js', function() {
-    loadTooltip();
+    loadBootstrap();
     animateMessageContent();
     loadNiceScroll({scroll: false});
 });
