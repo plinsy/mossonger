@@ -13,7 +13,18 @@
         <aside class="col-10 col-sm-10 col-md-11 col-lg-9 px-0">
             <%= render 'chats/templates/2/navbar' %>
             <div class="hidden-x chat-body">
-                <button id="goFS" class="btn btn-float bg-light position-fixed top-13-p-sm right-1-p zi-99"><i id="fullscreen-icon" class="material-icons">fullscreen</i></button>
+                <div class="input-group position-fixed top-13-p-sm right-0-p zi-100 pt-1 w-auto">
+                    <button type="button" id="main-menu-toggler" data-target="#main-menu" class="input-group-prepend m-0 border-0 bg-light btn-sm">
+                        <i class="material-icons md-48">chevron_left</i>
+                    </button>
+                    <nav id="main-menu" class="nav bg-light collapse">
+                        <ul class="list-inline m-0">
+                            <li class="list-inline-item">
+                                <button id="goFS" class="btn shadow-none"><i id="fullscreen-icon" class="material-icons">fullscreen</i></button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
                 <%= yield %>
             </div>
         </aside>

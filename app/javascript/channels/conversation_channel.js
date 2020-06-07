@@ -58,10 +58,7 @@ $(document).on('turbolinks:load', function() {
 
     $.getScript('/assets/application', function() {
         fullscreenAble();
-        loadBootstrap();
-        animateMessageContent();
         loadNiceScroll({ scroll: true });
-        loadPlugins();
-        removeCurrentModals();
+        loadAll();
     });
 });

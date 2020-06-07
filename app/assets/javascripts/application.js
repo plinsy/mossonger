@@ -17,6 +17,27 @@
 //= require toastr
 //= require_tree .
 
+function loadAll() {
+    toggleMainMenu();
+    loadBootstrap();
+    animateMessageContent();
+    animateMessageContent();
+    loadPlugins();
+    removeCurrentModals();
+}
+
+function toggleMainMenu() {
+    $('#main-menu-toggler').on('click', function(event) {
+        event.preventDefault();
+        var chevron = $(this).find('.material-icons').html(),
+            oposite_chevron = (chevron == 'chevron_right' ? 'chevron_left' : 'chevron_right');
+        $(this).find('.material-icons').html(oposite_chevron);
+        var $target = $($(this).data('target'));
+        $target.fadeToggle('fast', function() {
+        });
+    });
+}
+
 function fullscreenAble() {
     var goFS = document.getElementById("goFS");
     if (goFS != null) {
