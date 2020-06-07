@@ -22,11 +22,11 @@
                 <%= message.content %>
                 <% end %>
             </button>
-            <small id="message-readers-<%= message.id %>" class="text-muted fade d-block">
+            <div id="message-readers-<%= message.id %>" class="text-muted small collapse">
                 <span>
                     <%= I18n.l(message.created_at, format: :long) %></span> - <span>
                     <%= message.seen_by %></span>
-            </small>
+            </div>
             <% if message.dropped? %>
             <% else %>
             <div id="message-content-menu-<%= message.id %>" class="modal w-100-vw h-100-vh">

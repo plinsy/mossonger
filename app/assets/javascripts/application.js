@@ -26,7 +26,7 @@ function animateMessageContent() {
     $('.message .content').on('mousedown', function(e) {
         var href = $(this).attr('href'),
             $href = $(href);
-        $href.toggleClass('show');
+        $href.fadeIn('fast');
     });
     $('.message .content').on('dblclick', function(e) {
         e.preventDefault();
@@ -42,7 +42,7 @@ function animateMessageContent() {
             $target = $(target),
             $href = $(href);
         $target.removeClass('show');
-        $href.removeClass('show');
+        $href.fadeOut('fast');
     });
 }
 
