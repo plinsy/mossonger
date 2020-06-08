@@ -4,6 +4,10 @@
 </aside>
 <% end %>
 <aside id="message-<%= message.id %>" class="message w-auto mb-1 <%= message.read_from(current_user) %> <%= message.dropped? ? 'removed' : '' %>">
+    <div class="message-others-sections-<%= message.id %> text-muted small collapse text-center">
+        <span>
+            <%= I18n.l(message.created_at, format: :long) %></span><span></span>
+    </div>
     <small class="text-muted d-block ml-5 <%= message.hide_for(current_user) %>">
         <%= message.sender.nickname_at(message.conversation).name %></small>
     <div class="d-flex <%= message.position_for(current_user) %>">
@@ -13,7 +17,7 @@
         <%= image_tag url_for(message.sender.avatar), data: {toggle: "tooltip", placement: message.oposite_direction_for(current_user)}, title: message.nickname.name, class: "btn btn-sm btn-float shadow-none border border-info align-self-end" %>
         <% end %>
         <div data-toggle="tooltip" data-placement="bottom" data-container="body" data-trigger="hover" title="" class="mx-1 text-<%= message.direction_for(current_user) %>">
-            <button href="#message-readers-<%= message.id %>" data-target="#message-content-menu-<%= message.id %>" class="content bg-<%= message.color_for(current_user) %> p-2 br-25 <%= message.borders_for(current_user) %> text-<%= message.direction_for(current_user) %> border-0">
+            <button href=".message-others-sections-<%= message.id %>" data-target="#message-content-menu-<%= message.id %>" class="content bg-<%= message.color_for(current_user) %> p-2 br-25 <%= message.borders_for(current_user) %> text-<%= message.direction_for(current_user) %> border-0">
                 <% if message.dropped? %>
                 <span data-toggle="tooltip" data-html="true" title="<div>Sent: <%= message.created_at.strftime('%H:%M %P') %></div><div>Removed: <%= message.dropped_at.strftime('%H:%M %P') %></div>">
                     <%= (message.droppers.include?(current_user) ? "You" : message.nickname.name) + " removed a message" %></span>
@@ -26,10 +30,8 @@
                 <%= message.content %>
                 <% end %>
             </button>
-            <div id="message-readers-<%= message.id %>" class="text-muted small collapse">
-                <span>
-                    <%= I18n.l(message.created_at, format: :long) %></span> - <span>
-                    <%= message.seen_by %></span>
+            <div id="message-readers-<%= message.id %>" class="message-others-sections-<%= message.id %> text-muted small collapse">
+                <span><%= message.seen_by %></span>
             </div>
             <% if message.dropped? %>
             <% else %>
