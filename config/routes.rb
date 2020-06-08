@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   get 'pages/features'
   get 'pages/privacy'
   get 'pages/for_developers'
+  get '/about', to: 'pages#about', as: 'about'
   root to: 'pages#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

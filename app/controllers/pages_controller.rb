@@ -14,4 +14,7 @@ class PagesController < ApplicationController
 
   def for_developers
   end
+
+  def about
+  end
 end

@@ -74,7 +74,7 @@ end
 # 		emoji
 ## 	readings
 ## 		message
-# 	pages/about
+## 	pages/about
 # 	pages/policies
 # 	privacy/explanation
 # 	policies/cookies

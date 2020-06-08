@@ -68,8 +68,8 @@ function toggleFullScreen() {
         $('#fullscreen-icon').html('fullscreen');
         $('body').toggleClass('dark');
     } else {
-        var docElm = document.body; // dark mode
-        // var docElm = document.documentElement;
+        // var docElm = document.body; // dark mode
+        var docElm = document.documentElement;
         if (docElm.requestFullscreen) {
             docElm.requestFullscreen();
         } else if (docElm.mozRequestFullScreen) {

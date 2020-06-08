@@ -146,6 +146,10 @@ class User < ApplicationRecord
     return true
   end
 
+  def unread_conversation?(conversation)
+    !read_conversation?(conversation)
+  end
+
   def read?(message)
     self.readings.where(message: message).any?
   end
