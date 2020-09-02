@@ -1,6 +1,6 @@
-<li id="conversation-<%= conversation.id %>" class="list-group-item py-md-1 pr-md-1 pl-md-1 py-sm-0 pr-sm-1 pl-sm-0 my-2 border-0 shadow-none conversation <%= conversation.read_from(current_user) %>">
+<li <%= show_options ? "id = 'conversation-#{conversation.id}'" : "" %> class="list-group-item py-md-1 pr-md-1 pl-md-1 py-sm-0 pr-sm-1 pl-sm-0 my-2 border-0 shadow-none conversation <%= conversation.read_from(current_user) %>">
     <% guest = conversation.is_a_dialog? ? current_user.second_in(conversation) : conversation.last_writter %>
-    <%= link_to conversation, class: "d-block" do %>
+    <%= link_to conversation, class: "d-block nav-link" do %>
     <div class="d-flex justify-content-between align-items-center">
         <div class="media justify-content-between align-items-center">
             <%= image_tag url_for(guest.avatar), size: 45, class: "h-100 w-3-vw-lg w-5-vw-md w-15-vw-sm rounded-circle" %>

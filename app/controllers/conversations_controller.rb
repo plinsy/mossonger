@@ -73,7 +73,7 @@ class ConversationsController < ApplicationController
   def search
     @q = params[:conversations][:q]
     @target = params[:conversations][:target]
-    @result = Conversation.search(@q, current_user)
+    @result = Conversation.search(@q, current_user) # @result => [contacts, groups, more]
     @contacts = @result[0]
     @groups = @result[1]
     @more = @result[2]
